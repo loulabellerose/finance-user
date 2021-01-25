@@ -23,11 +23,14 @@
         minlength: 5,
         maxlength: 1024
       },
-      isAdmin: Boolean
+      role: {
+        type: String,
+        required: [true, 'Role is a required field']
+      }
  });
 
  userSchema.methods.generateAuthToken = function(){
-     const token = jwt.sign({_id: this.id, isAdmin: this.isAdmin }, config.get('jwtPrivateKey'));
+     const token = jwt.sign({_id: this.id, role: this.role }, config.get('jwtPrivateKey'));
      //could add expiration time
      return token;
  }

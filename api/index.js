@@ -13,7 +13,6 @@ if (!config.get('jwtPrivateKey')) {
   process.exit(1);
 }
 
-
 db.connect('mongodb://localhost:27017/rise-app')
   .then(() => console.log('Connected to database'))
   .catch(err => console.error('Unable to connect to database'));

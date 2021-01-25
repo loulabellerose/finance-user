@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import DataTable from './DataTable';
 
 class Users extends Component {
 
@@ -19,9 +18,13 @@ class Users extends Component {
             })
     }
 
-    dataTable() {
+    getAllUsers() {        
         return this.state.usersCollection.map((data, i) => {
-            return <DataTable obj={data} key={i} />;
+            return <tr>
+                <td><a href={`/users/${data._id}`}>{data.name}</a></td>
+                <td>{data.email}</td>
+                <td>{data.role}</td>
+                </tr>;
         });
     }
 
@@ -29,15 +32,16 @@ class Users extends Component {
         return (
             <div className="wrapper-users">
                 <div className="container">
-                    <table className="table table-striped table-dark">
+                    <table className="table table-striped">
                         <thead className="thead-dark">
                             <tr>
                                 <td>Name</td>
                                 <td>Email</td>
+                                <td>User Role</td>
                             </tr>
                         </thead>
                         <tbody>
-                            {this.dataTable()}
+                            {this.getAllUsers()}
                         </tbody>
                     </table>
                 </div>

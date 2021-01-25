@@ -1,46 +1,52 @@
 import React, { useState } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from "react-router-dom";
-import UserRegistration from "./components/UserRegistration";
-import Users from "./components/Users";
-import Loan from "./components/Loan";
-import Loans from "./components/Loans";
-import Login from "./components/Login";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
+import CreateUser from './components/create-user.component';
+import GetUser from './components/get-user.component';
+import Header from './components/header.component';
+import Loans from './components/loans.component';
+import Loan from './components/loan.component';
+import Login from './components/login.component';
+import Logout from './components/logout.component';
+import Menu from './components/menu.component';
+import Users from './components/users.component';
+import User from './components/user.component';
 
 function App() {
+  const token = localStorage.getItem('user-auth-token');
+
+
+  if(!token) {
+    return (<Route component={Login} />)
+  }
+ 
+ 
   return (
     <div className="App">
-      <Router>
-        <header>
-          <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
 
-            <Link className="navbar-brand" to="/">Loans</Link>
+        <Route component={Header} />
 
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item active">
-                  <Link className="nav-link" to="/users/new">UserRegistration</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/users">Users</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/login">Login</Link>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </header>
+        <div className="row">
 
-        <Switch>
-          <Route exact path="/"><Loans /></Route>
-          <Route path="/login"><Login /></Route>
-          <Route path="/users/new"><UserRegistration /></Route>
-          <Route path="/users"><Users /></Route>
-        </Switch>
-      </Router>
+          <Route component={Menu} />
+          
 
+
+          <div className="col-8">
+            <Switch>
+              <Route exact path="/account" component={GetUser} />
+              <Route exact path="/users" component={Users} />
+              <Route exact path="/users/new" component={CreateUser} />
+              <Route exact path='/users/:userId' component={User} />
+              <Route exact path='/login' component={Login} />
+              <Route exact path='/:loanId' component={Loan} />
+              <Route exact path='/' component={Loans} />
+            </Switch>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

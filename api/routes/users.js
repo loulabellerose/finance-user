@@ -3,6 +3,7 @@ const db = require('mongoose');
 const { User } = require('../models/user');
 const bcryptjs = require('bcryptjs');
 const bodyParser = require('body-parser');
+const auth = require('../middleware/auth');
 const express = require('express');
 const router = express.Router();
 
@@ -10,6 +11,11 @@ router.get('/', async (req, res) => {
   await User.find({}).then(eachOne => {
     res.json(eachOne);
   })
+});
+
+router.get('/me', auth, async (req, res) => {
+  const user = await User.findById(req.user._id).select('-password');
+  res.send(user);
 });
 
 router.get('/:id', async (req, res) => {
@@ -22,11 +28,11 @@ router.post('/new', async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
   if (user) return res.status(400).send('Account already exists with this email address');
 
-  user = new User(req.body, ['name', 'email', 'password', 'isAdmin']);
+  user = new User(req.body, ['name', 'email', 'password', 'role']);
   user.password = await bcryptjs.hash(user.password, 10);
   await user.save();
 
-  res.header('auth-token', token).send(user);
+  res.header('token', token).send(user);
 });
 
 router.put('/:id', async (req, res) => {
@@ -35,7 +41,7 @@ router.put('/:id', async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
-      isAdmin: req.body.isAdmin
+      role: req.body.role
     }, { new: true }
   );
   if (!user) return res.status(404).send('User was not found.');
@@ -44,7 +50,6 @@ router.put('/:id', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
-  //router.delete('/:id', [auth, admin], async (req, res) => {
   const user = await User.findByIdAndRemove(req.params.id);
 
   if (!user) return res.status(404).send('User not found');

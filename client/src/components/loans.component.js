@@ -1,27 +1,33 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import DataTable from './DataTable';
 
 class Loans extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { loansCollection: [] };
+        this.state = { 
+            loansCollection: [] 
+        };
     }
 
     componentDidMount() {
         axios.get('http://localhost:5000/loans')
             .then(res => {
                 this.setState({ loansCollection: res.data });
+                console.log(res.data);
             })
             .catch(function (error) {
                 console.log(error);
             })
     }
 
-    dataTable() {
+    getAllLoans() {        
         return this.state.loansCollection.map((data, i) => {
-            return <DataTable obj={data} key={i} />;
+            return <tr>
+                <td><a href={`/${data._id}`}>{data._id}</a></td>
+                <td>{data.merchantId}</td>
+                <td>{data.documents}</td>
+                </tr>;
         });
     }
 
@@ -29,15 +35,16 @@ class Loans extends Component {
         return (
             <div className="wrapper-users">
                 <div className="container">
-                    <table className="table table-striped table-dark">
+                    <table className="table table-striped">
                         <thead className="thead-dark">
-                            {/*<tr>
-                                <td>Name</td>
-                                <td>Email</td>
-                            </tr>*/}
+                            <tr>
+                                <td>ID</td>
+                                <td>MerchantID</td>
+                                <td>Documents</td>
+                            </tr>
                         </thead>
                         <tbody>
-                            {this.dataTable()}
+                            {this.getAllLoans()}
                         </tbody>
                     </table>
                 </div>
