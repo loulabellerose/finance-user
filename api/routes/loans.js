@@ -17,14 +17,7 @@ router.get('/:id', async (req, res) => {
   if (!loan) return res.status(404).send('Loan application not found.');
   res.send(loan);
 });
-/*
-router.post('/new', async (req, res) => {
-    let loan = new Loan(req.body, ['merchantId', 'amount', 'status', 'documents']);   
-    await loan.save();
-      
-    res.send(loan);
-});
-*/
+
 router.put('/:id', async (req, res) => {
   const loan = await Loan.findByIdAndUpdate(req.params.id, {
       merchantId: req.body.merchantId,

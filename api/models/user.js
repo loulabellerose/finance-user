@@ -1,5 +1,6 @@
  const config = require('config');
  const db = require('mongoose');
+ //is the below import required?
  const uniqueValidator = require('mongoose-unique-validator');
  const jwt = require('jsonwebtoken');
 

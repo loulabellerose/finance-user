@@ -3,10 +3,17 @@ const db = require('mongoose');
 const {statusSchema} = require('./status');
 
 const loanSchema = new db.Schema ({
-    merchantId: {
+    merchantBusinessId: {
+        type: String,
+        required: [true, 'Business Id is required'],
+    },
+    /*
+    //Not needed?
+    merchantAccountId: {
         type: String,
         required: [true, 'MerchantID is required'],
     },
+    */
     amount: {
         //how best to handle monetary values
         //how to set a min and max

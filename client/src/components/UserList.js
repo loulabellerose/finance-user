@@ -1,32 +1,29 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Loans extends Component {
+class UserList extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { 
-            loansCollection: [] 
-        };
+        this.state = { usersCollection: [] };
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/loans')
+        axios.get('http://localhost:5000/users')
             .then(res => {
-                this.setState({ loansCollection: res.data });
-                console.log(res.data);
+                this.setState({ usersCollection: res.data });
             })
             .catch(function (error) {
                 console.log(error);
             })
     }
 
-    getAllLoans() {        
-        return this.state.loansCollection.map((data, i) => {
+    getAllUsers() {        
+        return this.state.usersCollection.map((data, i) => {
             return <tr>
-                <td><a href={`/${data._id}`}>{data._id}</a></td>
-                <td>{data.merchantId}</td>
-                <td>{data.documents}</td>
+                <td><a href={`/users/${data._id}`}>{data.name}</a></td>
+                <td>{data.email}</td>
+                <td>{data.role}</td>
                 </tr>;
         });
     }
@@ -34,23 +31,21 @@ class Loans extends Component {
     render() {
         return (
             <div className="wrapper-users">
-                <div className="container">
                     <table className="table table-striped">
                         <thead className="thead-dark">
                             <tr>
-                                <td>ID</td>
-                                <td>MerchantID</td>
-                                <td>Documents</td>
+                                <td>Name</td>
+                                <td>Email</td>
+                                <td>User Role</td>
                             </tr>
                         </thead>
                         <tbody>
-                            {this.getAllLoans()}
+                            {this.getAllUsers()}
                         </tbody>
                     </table>
                 </div>
-            </div>
         )
     }
 }
 
-export default Loans;
+export default UserList;

@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class Loan extends Component {
+class UserDetail extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            loan: {
+            user: {
 
             }
         };
     }
 
     async componentDidMount() {
-        await axios.get(`http://localhost:5000/loans/${this.props.match.params.loanId}`)
+        await axios.get(`http://localhost:5000/users/${this.props.match.params.userId}`)
             .then(res => {
-                this.setState({ loan: res.data });
-                console.log(res.data);
+                this.setState({ user: res.data });
+                //console.log(res.data);
             })
             .catch(function (error) {
                 console.log(error);
@@ -30,16 +30,20 @@ class Loan extends Component {
                     <table className="table table-striped">
                         <thead className="thead-dark">
                             <tr>
-                                <td>Loan ID</td>
-                                <td>Merchant ID</td>
-                                <td>Documents</td>
+                                <td>Name</td>
+                                <td>User ID</td>
+                                <td>Email</td>
                             </tr>
                         </thead>
                         <tbody>
+                            {/*<td>{this.state.user.name}</td>
+                            <td>{this.state.user._id}</td>
+                            <td>{this.props.match.params.id}</td>
+                            <td>{this.state.user.email}</td>*/}
                             <tr>
-                            <td>{this.state.loan.loanId}</td>
-                            <td>{this.state.loan.merchantId}</td>
-                            <td>{this.state.loan.documents}</td>
+                            <td>{this.props.match.params.userId}</td>
+                            <td>{this.state.user.name}</td>
+                            <td>{this.state.user.email}</td>
                             </tr>
 
                         </tbody>
@@ -50,4 +54,4 @@ class Loan extends Component {
     }
 }
 
-export default Loan;
+export default UserDetail;

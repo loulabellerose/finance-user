@@ -2,52 +2,33 @@ import React, { useState } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import CreateUser from './components/create-user.component';
-import GetUser from './components/get-user.component';
-import Header from './components/header.component';
-import Loans from './components/loans.component';
-import Loan from './components/loan.component';
-import Login from './components/login.component';
-import Logout from './components/logout.component';
-import Menu from './components/menu.component';
-import Users from './components/users.component';
-import User from './components/user.component';
+import AdminDashboard from './views/AdminDashboard';
+import Login from './components/Login';
+import Logout from './components/Logout';
+import Dashboard from './views/Dashboard';
+
 
 function App() {
-  const token = localStorage.getItem('user-auth-token');
+  /*
+  const token = localStorage.getItem('user');
+  console.log(token);
 
 
   if(!token) {
     return (<Route component={Login} />)
   }
- 
+ */
  
   return (
+    <Router>
     <div className="App">
-      <div class="container">
-
-        <Route component={Header} />
-
-        <div className="row">
-
-          <Route component={Menu} />
-          
-
-
-          <div className="col-8">
-            <Switch>
-              <Route exact path="/account" component={GetUser} />
-              <Route exact path="/users" component={Users} />
-              <Route exact path="/users/new" component={CreateUser} />
-              <Route exact path='/users/:userId' component={User} />
-              <Route exact path='/login' component={Login} />
-              <Route exact path='/:loanId' component={Loan} />
-              <Route exact path='/' component={Loans} />
-            </Switch>
-          </div>
-        </div>
+      <div class="container">               
+              <Route exact path='/' component={Dashboard} />
+              <Route exact path="/admin" component={AdminDashboard} />   
+            <Route path="/login" component={Login} />
       </div>
     </div>
+    </Router>
   );
 }
 
