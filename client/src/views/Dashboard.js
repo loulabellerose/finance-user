@@ -4,24 +4,28 @@ import Header from '../components/Header';
 import NavBar from '../components/NavBar';
 import LoanList from '../components/LoanList';
 import UserList from '../components/UserList';
-import LoanDetail from '../components/LoanDetail'
-export default function Dashboard() {
+import LoanDetail from '../components/LoanDetail';
+
+export default function Dashboard({ children }) {
 
   let user = JSON.parse(localStorage["user"]);
   user = user.name;
 
-  return(
-<div className="App">
+  return (
+    <div className="App">
       <div class="container">
         <Route component={Header} />
-         <div className="row">
+        <div className="row">
           <Route component={NavBar} />
           <div className="col-8">
-          <h2>Hi {user} Welcome to your Analyst Dashboard</h2>
-              <Switch>
+            <h2>Hi {user} Welcome to your Analyst Dashboard</h2>
+            {children}
+            {/*
+            <Switch>
               <Route exact path='/' component={LoanList} />
               <Route exact path='/:loanId' component={LoanDetail} />
-              </Switch>
+            </Switch>
+            */}
           </div>
         </div>
       </div>
