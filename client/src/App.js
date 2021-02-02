@@ -10,16 +10,16 @@ import AdminDashboard from './views/AdminDashboard';
 import Dashboard from './views/Dashboard';
 
 // all user views
-import Header from '../components/Header';
-import NavBar from '../components/NavBar';
-import LoanList from '../components/LoanList';
-import LoanDetail from '../components/LoanDetail';
+import Header from './components/Header';
+import NavBar from './components/NavBar';
+import LoanList from './components/LoanList';
+import LoanDetail from './components/LoanDetail';
 
 // admin only views
-import NavBarAdmin from '../components/NavBarAdmin';
-import CreateUser from '../components/CreateUser';
-import UserList from '../components/UserList';
-import UserDetail from '../components/UserDetail';
+import NavBarAdmin from './components/NavBarAdmin';
+import CreateUser from './components/CreateUser';
+import UserList from './components/UserList';
+import UserDetail from './components/UserDetail';
 
 function App() {
   /*
@@ -37,14 +37,14 @@ function App() {
       <Switch>
         <Route path="/login" component={Login} />
 
-        <Route path='/admin/:path?' exact>
+        <Route>
           <AdminDashboard>
             <Switch>
-              <Route path="/admin" component={LoanList} />
-              <Route path="/admin/users" component={UserList} />
-              <Route path="/admin/users/new" component={CreateUser} />
-              <Route path="/admin/users/:userId" component={UserDetail} />
-              <Route path="/admin/:loanId" component={LoanDetail} />
+              <Route exact path="/admin" component={LoanList} />
+              <Route exact path="/admin/users" component={UserList} />
+              <Route exact path="/admin/users/new" component={CreateUser} />
+              <Route exact path="/admin/users/:userId" component={UserDetail} />
+              <Route exact path="/admin/:loanId" component={LoanDetail} />
             </Switch>
           </AdminDashboard>
         </Route>
@@ -52,8 +52,8 @@ function App() {
         <Route>
           <Dashboard>
             <Switch>
-              <Route exact path='/' component={LoanList} />
-              <Route exact path='/:loanId' component={LoanDetail} />
+              <Route exact path="/" component={LoanList} />
+              <Route exact path="/:loanId" component={LoanDetail} />
             </Switch>
           </Dashboard>
         </Route>

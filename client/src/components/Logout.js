@@ -1,5 +1,5 @@
 export default function Logout() {
     localStorage.clear();
-    window.location.href = "/";
+    window.location.href = "/login";
 }
 
