@@ -21,7 +21,7 @@ export default function AdminDashboard({children}) {
         <div className="row">
           <Route component={NavBarAdmin} />
           <div className="col-10">
-            <h2>Hi {user} Welcome to your Admin Dashboard</h2>
+            <h2>Hi {user}, welcome to your admin dashboard</h2>
             <div className="content-panel">
               {children}
             {/*

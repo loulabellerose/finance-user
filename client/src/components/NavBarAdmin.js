@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Logout from './Logout';
+import './NavBarAdmin.css';
 
 export default function NavBarAdmin() {
 

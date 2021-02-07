@@ -1,0 +1,10 @@
+.nav{
+    background: #006D5B;
+    font-family: 'Montserrat', sans-serif;
+  }
+.nav-link {
+    color: white
+}
+.nav-link:hover {
+    color: burlywood
+}

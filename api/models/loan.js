@@ -1,31 +1,21 @@
 //const config = require('config');
+const { Double } = require('mongodb');
 const db = require('mongoose');
 const {statusSchema} = require('./status');
 
 const loanSchema = new db.Schema ({
     merchantBusinessId: {
-        type: String,
-        required: [true, 'Business Id is required'],
+        type: String
     },
-    /*
-    //Not needed?
-    merchantAccountId: {
-        type: String,
-        required: [true, 'MerchantID is required'],
-    },
-    */
     amount: {
-        //how best to handle monetary values
-        //how to set a min and max
+        //Add validation to ensure proper monetary value
         type: Number,
-        min: 1000,
-        max: 10000
+        min: 1000.00,
+        max: 10000.00
     },
     status: {
-        //type: statusSchema,
-        type: String,
-        required: true
-      },
+        type: [statusSchema]
+    },
     documents: {
         type: String,
         minlength: 5
@@ -35,3 +25,4 @@ const loanSchema = new db.Schema ({
 const Loan = db.model('Loan', loanSchema);
 
 exports.Loan = Loan;
+exports.loanSchema = loanSchema;

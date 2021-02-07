@@ -44,7 +44,7 @@ function App() {
               <Route exact path="/admin/users" component={UserList} />
               <Route exact path="/admin/users/new" component={CreateUser} />
               <Route exact path="/admin/users/:userId" component={UserDetail} />
-              <Route exact path="/admin/:loanId" component={LoanDetail} />
+              <Route exact path="/loans/:loanId" component={LoanDetail} />
             </Switch>
           </AdminDashboard>
         </Route>

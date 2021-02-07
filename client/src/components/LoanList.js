@@ -24,11 +24,9 @@ class LoanList extends Component {
     getAllLoans() {        
         return this.state.loansCollection.map((data, i) => {
             return <tr>
-                {/*<td><a href={`/${data._id}`}>{data._id}</a></td>*/}
-                <td><a href={`/${data.merchantBusinessId}`}>{data.merchantBusinessId}</a></td>
-                <td>${data.amount}</td>
-                <td>{data.status}</td>
-                <td>{data.documents}</td>
+                <td><a href={`loans/${data._id}`}>{data.businessName}</a></td>
+                <td>${data.loan.amount}</td>
+                <td>{data.loan.status[0].currentStatus}</td>           
                 </tr>;
         });
     }
@@ -39,10 +37,9 @@ class LoanList extends Component {
                     <table className="table table-striped">
                         <thead className="thead-dark">
                             <tr>
-                                <td>MerchantBusinessID</td>
+                                <td>Merchant </td>
                                 <td>Amount Requested</td>
                                 <td>Application Status</td>
-                                <td>Documents</td>
                             </tr>
                         </thead>
                         <tbody>

@@ -1,7 +1,8 @@
 const config = require('config');
 const db = require('mongoose');
+//const {businessSchema} = require('./business');
 
-const merchantAccountSchema = new db.Schema({
+const merchantSchema = new db.Schema({
    accountHolderName: {
        type: String,
        required: [true, 'Name is a required field'],
@@ -33,13 +34,21 @@ const merchantAccountSchema = new db.Schema({
       minlength: 5,
       maxlength: 255
     },
+    /* Can get this info from object ID
     merchantSince: {
       type: Date,
       // Timestamp of first insertion into db?
       required: true
+    },
+    //removing business as subdoc
+    business: {
+      type: businessSchema
     }
+    */
 });
 
-const MerchantAccount = db.model('MerchantAccount', merchantAccountSchema);
 
-exports.MerchantAccount = MerchantAccount;
+const Merchant = db.model('Merchant', merchantSchema);
+
+exports.Merchant = Merchant;
+exports.merchantSchema = merchantSchema;

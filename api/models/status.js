@@ -1,15 +1,12 @@
 const db = require('mongoose');
 
 const statusSchema = new db.Schema ({
-    name: {
-        type: String
+    currentStatus: {
+        type: String,
+        default: "Submitted by merchant"
+
     },
-    /*
-    updated: {
-        type: Date, 
-        default: Date.now
-    }
-    */
+    createdAt: Number
 });
 
 const Status = db.model('Status', statusSchema);
