@@ -22,7 +22,6 @@ const businessSchema = new db.Schema({
   loan: {
     type: loanSchema
   }
-   
 });
 
 const Business = db.model('Business', businessSchema);

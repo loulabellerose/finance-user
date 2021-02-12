@@ -1,9 +1,32 @@
-.nav{
-    background: #006D5B;
-    font-family: 'Montserrat', sans-serif;
+  .menu{
+	background: #006D5B;
+	height:100vh;
+	
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:5;
+	outline:none;
   }
+  ul{
+    list-style:none;
+    padding:0.5em 0;
+    margin:0;
+  }
+    
+    li{
+        padding:0.5em 1em 0.5em 3em;
+        font-size:0.95em;
+        font-weight:regular;
+        background-repeat:no-repeat;
+        background-position:left 15px center;
+        background-size:auto 20px;
+        transition:all 0.15s linear;
+        cursor:pointer;
+    }
 .nav-link {
-    color: white
+    color: white;
+
 }
 .nav-link:hover {
     color: burlywood

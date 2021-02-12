@@ -16,6 +16,7 @@ if (!config.get('jwtPrivateKey')) {
   process.exit(1);
 }
 
+//db.connect('mongodb+srv://louisecoulter:<coleslaw22>@cluster0.wcr70.mongodb.net/<rise-app>?retryWrites=true&w=majority')
 db.connect('mongodb://localhost:27017/rise-app')
   .then(() => console.log('Connected to database'))
   .catch(err => console.error('Unable to connect to database'));

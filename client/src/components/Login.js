@@ -33,7 +33,7 @@ export default class Login extends Component {
           this.props.history.push('/admin');
         }
         else {
-        this.props.history.push('/');
+        this.props.history.push('/dashboard');
         }
       } else {
         const error = new Error(res.error);

@@ -1,0 +1,60 @@
+{
+    "accountHolderName": "Jonathan McDevitt",
+    "email": "jonnymac@gmail.com",
+    "password": "password",
+    "phone": "0123456789",
+    "postalAddress": "74 Coomber Road, Belfast",
+    "business": {
+        "businessName": "Shop N Save",
+        "grossMonthlySales": "15000.00",
+        "averageTransactionValue": "4.75",
+        "loan": {
+            "amount": "2000.00",
+            "status": {
+                "currentStatus": "Submitted by Merchant"
+            },
+            "documents": ""
+        }
+    }
+}
+
+{
+    "accountHolderName": "Amber Rock",
+    "email": "arock2000@hotmal.co.uk",
+    "password": "password",
+    "phone": "0123456789",
+    "postalAddress": "47 Fariview Farm Road, Ballyclare",
+    "business": {
+        "businessName": "Ruby Ranch Boutique",
+        "grossMonthlySales": "8360.00",
+        "averageTransactionValue": "52.00",
+        "loan": {
+            "amount": "4000.00",
+            "status": {
+                "currentStatus": "Submitted by Merchant"
+            },
+            "documents": ""
+        }
+    }
+}
+
+
+{
+    "accountHolderName": "Lola Bingham",
+    "email": "lol75@hotmail.com",
+    "password": "password",
+    "phone": "0123456789",
+    "postalAddress": "8 Church Hill, Holywood",
+    "business": {
+        "businessName": "Holywood Creamery",
+        "grossMonthlySales": "6750.00",
+        "averageTransactionValue": "3.50",
+        "loan": {
+            "amount": "3000.00",
+            "status": {
+                "currentStatus": "Submitted by Merchant"
+            },
+            "documents": ""
+        }
+    }
+}

@@ -4,7 +4,7 @@ const db = require('mongoose');
 const {statusSchema} = require('./status');
 
 const loanSchema = new db.Schema ({
-    merchantBusinessId: {
+    businessId: {
         type: String
     },
     amount: {
@@ -17,8 +17,7 @@ const loanSchema = new db.Schema ({
         type: [statusSchema]
     },
     documents: {
-        type: String,
-        minlength: 5
+        type: String
     }
 });
 

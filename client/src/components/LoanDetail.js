@@ -8,20 +8,39 @@ class LoanDetail extends Component {
         this.state = {
             business: {
             },
-            isLoaded: false
+            isLoaded: false,
+            status: {
+
+            }
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
+    handleChange(e) {
+        this.setState({statusUpdate: e.target.value});
     }
 
-    handleSubmit(event) {
-        alert("Loan application status updated");
-        //ADD CODE HERE
+    handleSubmit(e) {
+        e.preventDefault()
+        
+        this.setState({
+            status: this.state.statusUpdate
+        });
+
+        const statusObject = {
+            currentStatus: this.state.statusUpdate
+        }
+
+        axios.post(`http://localhost:5000/loans/${this.props.match.params.loanId}`, statusObject)
+        .then((res) => {
+            console.log(res.data)
+            alert(`Loan application status updated to ${statusObject.currentStatus}`)
+            //Add a redirect or reload here
+        }).catch((error) => {
+            console.log(error)
+        });        
     }
 
     async componentDidMount() {
@@ -43,22 +62,21 @@ class LoanDetail extends Component {
             const loan = {
                 loan: this.state.business.loan
             };
-            console.log(loan);
-
+            const arrayLength = loan.loan.status.length;
             return (
                 <div className="wrapper-users">
                     <div className="container loan-detail">
                         <h5>Business Name: {this.state.business.businessName} </h5>
                         <h5>Loan application value: £{loan.loan.amount} </h5>
-                        <h5>Loan application value: {loan.loan.status[0].currentStatus} </h5>
+                        <h5>Loan application value: {loan.loan.status[arrayLength-1].currentStatus} </h5>
 
                         <form onSubmit={this.handleSubmit}>
                             <label>
                                 Update status:
-                        <select value={this.state.value} onChange={this.handleChange}>
-                                    <option value="pending">Pending</option>
-                                    <option value="forwarded">Forwarded</option>
-                                    <option value="approved">Approved</option>
+                        <select statusUpdate={this.state.statusUpdate} onChange={this.handleChange}>
+                                    <option statusUpdate="pending">Pending</option>
+                                    <option statusUpdate="forwarded">Forwarded</option>
+                                    <option statusUpdate="approved">Approved</option>
                                 </select>
                             </label>
                             <input type="submit" value="Update" />

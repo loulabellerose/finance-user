@@ -1,10 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
-import LoanList from '../components/LoanList';
-import UserList from '../components/UserList';
-import LoanDetail from '../components/LoanDetail';
 
 export default function Dashboard({ children }) {
 
@@ -20,12 +17,7 @@ export default function Dashboard({ children }) {
           <div className="col-8">
             <h2>Hi {user} Welcome to your Analyst Dashboard</h2>
             {children}
-            {/*
-            <Switch>
-              <Route exact path='/' component={LoanList} />
-              <Route exact path='/:loanId' component={LoanDetail} />
-            </Switch>
-            */}
+
           </div>
         </div>
       </div>

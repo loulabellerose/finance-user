@@ -3,6 +3,7 @@ const {User} = require('../models/user');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
+const config = require('config');
 
 router.post('/', async (req, res) => {
   let user = await User.findOne({ email: req.body.email });

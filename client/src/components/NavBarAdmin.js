@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import Logout from './Logout';
-import './NavBarAdmin.css';
+//import './NavBarAdmin.css';
 
 export default function NavBarAdmin() {
 
     return (
-      <div className="nav">
+      
+      <div className="menu">
       <ul class="nav flex-column col-2">
         <li class="nav-item">
           <Link className="nav-link" to={"/admin"}> Finance User Home</Link>
@@ -21,5 +22,8 @@ export default function NavBarAdmin() {
         </li>
       </ul>
       </div>
+    
+
     )
+
   } 
