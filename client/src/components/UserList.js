@@ -9,7 +9,13 @@ class UserList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/users')
+        const user = JSON.parse(localStorage["user"]);
+        const token = user.token;
+        axios({
+            method: 'get',
+            url: 'http://localhost:5000/users',
+            headers: {token: token }
+        })
             .then(res => {
                 this.setState({ usersCollection: res.data });
             })
@@ -21,7 +27,7 @@ class UserList extends Component {
     getAllUsers() {        
         return this.state.usersCollection.map((data, i) => {
             return <tr>
-                <td><a href={`/users/${data._id}`}>{data.name}</a></td>
+                <td><a href={`/admin/users/${data._id}`}>{data.name}</a></td>
                 <td>{data.email}</td>
                 <td>{data.role}</td>
                 </tr>;

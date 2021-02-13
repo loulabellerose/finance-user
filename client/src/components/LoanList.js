@@ -11,7 +11,13 @@ class LoanList extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:5000/business')
+        const user = JSON.parse(localStorage["user"]);
+        const token = user.token;
+        axios({
+            method: 'get',
+            url: 'http://localhost:5000/business',
+            headers: {token: token }
+        })
             .then(res => {
                 this.setState({ loansCollection: res.data });
                 console.log(res.data);

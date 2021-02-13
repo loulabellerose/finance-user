@@ -3,6 +3,7 @@ const config = require('config');
 
 module.exports = function(req, res, next) {
     const token = req.header('token');
+    //401 Unauthorised
     if (!token) return res.status(401).send('Access Denied. No token provided.');
 
     try {

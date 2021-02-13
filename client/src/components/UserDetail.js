@@ -13,10 +13,16 @@ class UserDetail extends Component {
     }
 
     async componentDidMount() {
-        await axios.get(`http://localhost:5000/users/${this.props.match.params.userId}`)
+        const user = JSON.parse(localStorage["user"]);
+        const token = user.token;
+        await axios({
+            method: 'get',
+            url: `http://localhost:5000/users/${this.props.match.params.userId}`,
+            headers: { token: token }
+        })
             .then(res => {
                 this.setState({ user: res.data });
-                //console.log(res.data);
+                console.log(res.data);
             })
             .catch(function (error) {
                 console.log(error);
@@ -31,25 +37,27 @@ class UserDetail extends Component {
                         <thead className="thead-dark">
                             <tr>
                                 <td>Name</td>
-                                <td>User ID</td>
                                 <td>Email</td>
+                                <td>Role</td>
+                                <td>Account Status</td>
                             </tr>
                         </thead>
                         <tbody>
-                            {/*<td>{this.state.user.name}</td>
-                            <td>{this.state.user._id}</td>
-                            <td>{this.props.match.params.id}</td>
-                            <td>{this.state.user.email}</td>*/}
                             <tr>
-                            <td>{this.props.match.params.userId}</td>
                             <td>{this.state.user.name}</td>
                             <td>{this.state.user.email}</td>
+                            <td>{this.state.user.role}</td>
+                            <td>
+                    {/* Add functionality here */}
+                            <button type="button" class="btn btn-danger">Delete User</button>
+                            </td>
                             </tr>
 
                         </tbody>
                     </table>
                 </div>
             </div>
+
         )
     }
 }

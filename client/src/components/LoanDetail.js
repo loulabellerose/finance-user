@@ -10,7 +10,6 @@ class LoanDetail extends Component {
             },
             isLoaded: false,
             status: {
-
             }
         };
 
@@ -28,15 +27,25 @@ class LoanDetail extends Component {
         this.setState({
             status: this.state.statusUpdate
         });
-
+/*
         const statusObject = {
             currentStatus: this.state.statusUpdate
         }
+*/
+        const user = JSON.parse(localStorage["user"]);
+        const token = user.token;
 
-        axios.post(`http://localhost:5000/loans/${this.props.match.params.loanId}`, statusObject)
+        axios({
+            method: 'post',
+            url: `http://localhost:5000/loans/${this.props.match.params.loanId}`, 
+            headers: {token: token },
+            data: {
+                currentStatus: this.state.statusUpdate
+            } 
+        })
         .then((res) => {
             console.log(res.data)
-            alert(`Loan application status updated to ${statusObject.currentStatus}`)
+            alert(`Loan application status updated`)
             //Add a redirect or reload here
         }).catch((error) => {
             console.log(error)
@@ -44,7 +53,13 @@ class LoanDetail extends Component {
     }
 
     async componentDidMount() {
-        await axios.get(`http://localhost:5000/business/${this.props.match.params.loanId}`)
+        const user = JSON.parse(localStorage["user"]);
+        const token = user.token;
+        await axios({
+            method: 'get',
+            url: `http://localhost:5000/business/${this.props.match.params.loanId}`, 
+            headers: {token: token } 
+        })
             .then(res => {
                 this.setState({ business: res.data, isLoaded: true })
                 //console.log(res.data);

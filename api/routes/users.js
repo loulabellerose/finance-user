@@ -4,27 +4,28 @@ const { User } = require('../models/user');
 const bcryptjs = require('bcryptjs');
 const bodyParser = require('body-parser');
 const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 const express = require('express');
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', [auth, admin], async (req, res) => {
   await User.find({}).then(eachOne => {
     res.json(eachOne);
   })
 });
-
+/*
 router.get('/me', auth, async (req, res) => {
   const user = await User.findById(req.user._id).select('-password');
   res.send(user);
 });
-
-router.get('/:id', async (req, res) => {
+*/
+router.get('/:id', [auth, admin], async (req, res) => {
   const user = await User.findById(req.params.id);
   if (!user) return res.status(404).send('User not found.');
   res.send(user);
 });
 
-router.post('/new', async (req, res) => {
+router.post('/new', [auth, admin], async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
   if (user) return res.status(400).send('Account already exists with this email address');
 
@@ -35,7 +36,7 @@ router.post('/new', async (req, res) => {
   res.header('token', token).send(user);
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', [auth, admin], async (req, res) => {
   const user = await User.findByIdAndUpdate(req.params.id,
     {
       name: req.body.name,
@@ -49,7 +50,7 @@ router.put('/:id', async (req, res) => {
   res.send(user);
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', [auth, admin], async (req, res) => {
   const user = await User.findByIdAndRemove(req.params.id);
 
   if (!user) return res.status(404).send('User not found');
