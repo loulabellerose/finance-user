@@ -10,6 +10,8 @@ const express = require('express');
 const router = express.Router();
 const app = express();
 const config = require('config');
+const database = config.get('db');
+require('./prod')(app);
 
 if (!config.get('jwtPrivateKey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined.');
@@ -17,12 +19,13 @@ if (!config.get('jwtPrivateKey')) {
 }
 
 //db.connect('mongodb+srv://louisecoulter:<coleslaw22>@cluster0.wcr70.mongodb.net/<rise-app>?retryWrites=true&w=majority')
-db.connect('mongodb://localhost:27017/rise-app')
+db.connect(database)
   .then(() => console.log('Connected to database'))
   .catch(err => console.error('Unable to connect to database'));
 
 app.use(express.json());
 app.use(cors());
+
 app.use('/users', users);
 app.use('/loans', loans);
 //does the below make sense? something nested would be better
