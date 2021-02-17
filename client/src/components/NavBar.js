@@ -6,7 +6,7 @@ export default function NavBar() {
       <div className="nav">
         <ul class="nav flex-column col-2">
           <li class="nav-item">
-            <Link className="nav-link" to={"/"}>Financial Analyst Home</Link>
+            <Link className="nav-link" to={"/dashboard"}>Home</Link>
           </li>
           <li class="nav-item">
             <a class="nav-link" onClick={Logout}>Logout</a>

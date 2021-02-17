@@ -1,3 +1,4 @@
 {
-    "jwtPrivateKey": "rise_jwtPrivateKey"
+    "jwtPrivateKey": "rise_jwtPrivateKey",
+    "db": "rise_db"
 }

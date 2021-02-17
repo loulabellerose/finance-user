@@ -7,49 +7,49 @@ class UserList extends Component {
         super(props);
         this.state = { usersCollection: [] };
     }
-
-    componentDidMount() {
-        const user = JSON.parse(localStorage["user"]);
-        const token = user.token;
-        axios({
-            method: 'get',
-            url: 'http://localhost:5000/users',
-            headers: {token: token }
-        })
-            .then(res => {
-                this.setState({ usersCollection: res.data });
+    
+        componentDidMount() {
+            const user = JSON.parse(localStorage["user"]);
+            const token = user.token;
+            axios({
+                method: 'get',
+                url: 'http://localhost:5000/users',
+                headers: {token: token }
             })
-            .catch(function (error) {
-                console.log(error);
-            })
-    }
+                .then(res => {
+                    this.setState({ usersCollection: res.data });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        }
 
-    getAllUsers() {        
+    getAllUsers() {
         return this.state.usersCollection.map((data, i) => {
             return <tr>
                 <td><a href={`/admin/users/${data._id}`}>{data.name}</a></td>
                 <td>{data.email}</td>
                 <td>{data.role}</td>
-                </tr>;
+            </tr>;
         });
     }
 
     render() {
         return (
             <div className="wrapper-users">
-                    <table className="table table-striped">
-                        <thead className="thead-dark">
-                            <tr>
-                                <td>Name</td>
-                                <td>Email</td>
-                                <td>User Role</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.getAllUsers()}
-                        </tbody>
-                    </table>
-                </div>
+                <table className="table table-striped">
+                    <thead className="thead-dark">
+                        <tr>
+                            <td>Name</td>
+                            <td>Email</td>
+                            <td>User Role</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.getAllUsers()}
+                    </tbody>
+                </table>
+            </div>
         )
     }
 }

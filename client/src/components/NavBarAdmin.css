@@ -27,6 +27,7 @@
 .sidebar .nav-link {
   font-weight: 500;
   color: #333;
+  cursor:pointer;
 }
 
 .sidebar .nav-link .feather {
@@ -49,16 +50,15 @@
 }
 
 /*
- * Content
- */
+ 
 
  [role="main"] {
-  padding-top: 48px; /* Space for fixed navbar */
+  padding-top: 48px; /* Space for fixed navbar 
 }
 
-/*
+
  * Navbar
- */
+ 
 
 .navbar-brand {
   padding-top: .75rem;

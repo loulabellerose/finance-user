@@ -32,7 +32,7 @@ class LoanList extends Component {
             if (data.loan) {
                 const arrayLength = data.loan.status.length;
                 return <tr>
-                    <td><a href={`/dashboard/loans/${data._id}`}>{data.businessName}</a></td>
+                    <td><a href={`/admin/loans/${data._id}`}>{data.businessName}</a></td>
                     <td>${data.loan.amount}</td>
                     <td>{data.loan.status[arrayLength-1].currentStatus}</td>
                 </tr>;

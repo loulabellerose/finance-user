@@ -45,16 +45,16 @@ export default class CreateUser extends Component {
             url: 'http://localhost:5000/users/new',
             headers: { token: token },
             data: {
-                userObject: {
                     name: this.state.name,
                     email: this.state.email,
                     password: this.state.password,
                     role: this.state.role
-                }
             }
         })
             .then((res) => {
                 console.log(res.data)
+                alert(`New user added    `)
+                //Add a redirect or reload here
             }).catch((error) => {
                 console.log(error)
             });
@@ -78,13 +78,15 @@ export default class CreateUser extends Component {
                         <label>Set Password</label>
                         <input type="text" value={this.state.password} onChange={this.onChangeUserPassword} className="form-control" />
                     </div>
+                    
                     <div className="form-group">
                         <label>User role</label>
-                        <select role={this.state.role} onChange={this.onChangeUserRole} class="form-control btn btn-sm btn-outline-info dropdown-toggle">
+                        <select value={this.state.role} onChange={this.onChangeUserRole} class="form-control btn btn-sm btn-outline-info dropdown-toggle">
                             <option role="Analyst">Analyst</option>
                             <option role="Admin">Admin</option>
                         </select>
                     </div>
+        
                     <div className="form-group">
                         <input type="submit" value="Create User" className="btn btn-secondary btn-block" />
                     </div>

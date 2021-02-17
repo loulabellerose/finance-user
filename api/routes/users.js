@@ -33,7 +33,7 @@ router.post('/new', [auth, admin], async (req, res) => {
   user.password = await bcryptjs.hash(user.password, 10);
   await user.save();
 
-  res.header('token', token).send(user);
+  res.send(user);
 });
 
 router.put('/:id', [auth, admin], async (req, res) => {

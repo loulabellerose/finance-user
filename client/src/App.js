@@ -11,8 +11,11 @@ import Dashboard from './views/Dashboard';
 // all user views
 import LoanList from './components/LoanList';
 import LoanDetail from './components/LoanDetail';
+import Error from './components/Error';
+import Page404 from "./components/Page404";
 
 // admin only views
+import LoanListAdmin from './components/LoanListAdmin';
 import CreateUser from './components/CreateUser';
 import UserList from './components/UserList';
 import UserDetail from './components/UserDetail';
@@ -24,12 +27,14 @@ function App() {
       <Switch>
 
         <Route path="/login" component={Login} />
+        <Route exact path="/error" component={Error} />
+        {/*<Route component={Page404} />*/}
 
         <Route path="/dashboard">
           <Dashboard>
             <Switch>
               <Route exact path="/dashboard" component={LoanList} />
-              <Route exact path="/:loanId" component={LoanDetail} />
+              <Route exact path="/dashboard/loans/:loanId" component={LoanDetail} />
             </Switch>
           </Dashboard>
         </Route>
@@ -37,7 +42,7 @@ function App() {
         <Route path="/admin">
           <AdminDashboard>
             <Switch>
-              <Route exact path="/admin" component={LoanList} />
+              <Route exact path="/admin" component={LoanListAdmin} />
               <Route exact path="/admin/users" component={UserList} />
               <Route exact path="/admin/users/new" component={CreateUser} />
               <Route exact path="/admin/users/:userId" component={UserDetail} />

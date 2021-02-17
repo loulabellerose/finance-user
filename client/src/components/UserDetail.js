@@ -31,32 +31,34 @@ class UserDetail extends Component {
 
     render() {
         return (
-            <div className="wrapper-users">
-                <div className="container">
-                    <table className="table table-striped">
-                        <thead className="thead-dark">
-                            <tr>
-                                <td>Name</td>
-                                <td>Email</td>
-                                <td>Role</td>
-                                <td>Account Status</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <td>{this.state.user.name}</td>
-                            <td>{this.state.user.email}</td>
-                            <td>{this.state.user.role}</td>
-                            <td>
-                    {/* Add functionality here */}
-                            <button type="button" class="btn btn-danger">Delete User</button>
-                            </td>
-                            </tr>
+            <div className="wrapper">
+                <div className="form-row">
+                    <div class="col">
+                        <label>Name</label>
+                        <h5>{this.state.user.name}</h5>
+                    </div>
 
-                        </tbody>
-                    </table>
+                    <div class="col">
+                        <label>Email</label>
+                        <h5>{this.state.user.email}</h5>
+                    </div>
                 </div>
-            </div>
+
+                <div className="form-row">
+                    <div class="col">
+                        <label>Role</label>
+                        <h5>{this.state.user.role}</h5>
+                    </div>
+
+                    <div class="col">
+                        <label>Account Status</label>
+                        <p>
+                        <button type="button" class="btn btn-danger">Delete User</button>
+                        </p>
+                        {/* Add functionality here */}
+                    </div>
+                </div>
+            </div >
 
         )
     }

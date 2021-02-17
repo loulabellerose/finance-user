@@ -26,7 +26,7 @@
       },
       role: {
         type: String,
-        required: [true, 'Role is a required field']
+        //required: [true, 'Role is a required field']
       }
  });
 
