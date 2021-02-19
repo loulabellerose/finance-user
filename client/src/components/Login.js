@@ -19,7 +19,7 @@ export default class Login extends Component {
   }
   onSubmit = (event) => {
     event.preventDefault();
-    fetch(`https://frozen-forest-84312.herokuapp.com/login`, {
+    fetch(`${url}/login`, {
       method: 'POST',
       body: JSON.stringify(this.state),
       headers: {
