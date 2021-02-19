@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-var url = 'https://frozen-forest-84312.herokuapp.com';
+import { config } from '../Constants';
+var url = config.url.API_URL;
 
 class LoanList extends Component {
 
