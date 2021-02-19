@@ -11,14 +11,12 @@ const router = express.Router();
 const app = express();
 const config = require('config');
 const database = config.get('db');
-require('./prod')(app);
 
 if (!config.get('jwtPrivateKey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined.');
   process.exit(1);
 }
 
-//db.connect('mongodb+srv://louisecoulter:<coleslaw22>@cluster0.wcr70.mongodb.net/<rise-app>?retryWrites=true&w=majority')
 db.connect(database)
   .then(() => console.log('Connected to database'))
   .catch(err => console.error('Unable to connect to database'));

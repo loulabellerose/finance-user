@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { config } from '../Constants';
+var url = config.url.API_URL;
 
 class LoanList extends Component {
 
@@ -15,7 +17,7 @@ class LoanList extends Component {
         const token = user.token;
         axios({
             method: 'get',
-            url: 'http://localhost:5000/business',
+            url: `${url}/business`,
             headers: {token: token }
         })
             .then(res => {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { config } from '../Constants';
+var url = config.url.API_URL;
 
 class UserDetail extends Component {
 
@@ -17,7 +19,7 @@ class UserDetail extends Component {
         const token = user.token;
         await axios({
             method: 'get',
-            url: `http://localhost:5000/users/${this.props.match.params.userId}`,
+            url: `${url}/users/${this.props.match.params.userId}`,
             headers: { token: token }
         })
             .then(res => {

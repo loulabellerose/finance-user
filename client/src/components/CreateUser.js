@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { config } from '../Constants';
+var url = config.url.API_URL;
 
 export default class CreateUser extends Component {
 
@@ -42,7 +44,7 @@ export default class CreateUser extends Component {
         const token = user.token;
         axios({
             method: 'post',
-            url: 'http://localhost:5000/users/new',
+            url: `${url}/users/new`,
             headers: { token: token },
             data: {
                     name: this.state.name,

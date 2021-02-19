@@ -1,5 +1,7 @@
-// Login.jsx
 import React, { Component } from 'react';
+import { config } from '../Constants';
+var url = config.url.API_URL;
+
 export default class Login extends Component {
   constructor(props) {
     super(props)
@@ -17,7 +19,7 @@ export default class Login extends Component {
   }
   onSubmit = (event) => {
     event.preventDefault();
-    fetch('http://localhost:5000/login', {
+    fetch(`${url}/login`, {
       method: 'POST',
       body: JSON.stringify(this.state),
       headers: {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { config } from '../Constants';
+var url = config.url.API_URL;
 
 class UserList extends Component {
 
@@ -13,7 +15,7 @@ class UserList extends Component {
             const token = user.token;
             axios({
                 method: 'get',
-                url: 'http://localhost:5000/users',
+                url: `${url}/users`,
                 headers: {token: token }
             })
                 .then(res => {

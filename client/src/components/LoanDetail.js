@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { config } from '../Constants';
+var url = config.url.API_URL;
 
 class LoanDetail extends Component {
 
@@ -37,7 +39,7 @@ class LoanDetail extends Component {
 
         axios({
             method: 'post',
-            url: `http://localhost:5000/loans/${this.props.match.params.loanId}`,
+            url: `${url}/loans/${this.props.match.params.loanId}`,
             headers: { token: token },
             data: {
                 currentStatus: this.state.statusUpdate
@@ -57,7 +59,7 @@ class LoanDetail extends Component {
         const token = user.token;
         await axios({
             method: 'get',
-            url: `http://localhost:5000/business/${this.props.match.params.loanId}`,
+            url: `${url}/business/${this.props.match.params.loanId}`,
             headers: { token: token }
         })
             .then(res => {
