@@ -5,12 +5,14 @@ const merchants = require('./routes/merchants');
 const business = require('./routes/business');
 const status = require('./routes/statuses');
 const login = require('./routes/auth');
-const cors = require('cors')
+const documents = require('./routes/documents');
+const cors = require('cors');
 const express = require('express');
-const router = express.Router();
+const router = express.Router()
 const app = express();
 const config = require('config');
 const database = config.get('db');
+
 
 if (!config.get('jwtPrivateKey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined.');
@@ -23,6 +25,8 @@ db.connect(database)
 
 app.use(express.json());
 app.use(cors());
+//app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.json());
 
 app.use('/users', users);
 app.use('/loans', loans);
@@ -31,6 +35,8 @@ app.use('/loans/:id/status', status);
 app.use('/login', login);
 app.use('/merchants', merchants);
 app.use('/business', business);
+app.use('/documents', documents);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
+

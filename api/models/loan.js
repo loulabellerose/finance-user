@@ -21,6 +21,7 @@ const loanSchema = new db.Schema ({
     }
 });
 
+
 const Loan = db.model('Loan', loanSchema);
 
 exports.Loan = Loan;

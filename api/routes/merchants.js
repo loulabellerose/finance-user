@@ -5,16 +5,16 @@ const router = express.Router();
 const bcryptjs = require('bcryptjs');
 const auth = require('../middleware/auth');
 
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
   await Merchant.find({}).then(eachOne => {
       res.json(eachOne);
       })
 });
 
-router.get('/:id', auth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   const merchant = await Merchant.findById(req.params.id);
   //check parameter for account id
-  if (!account) return res.status(404).send('Merchant account not found.');
+  if (!merchant) return res.status(404).send('Merchant account not found.');
   res.send(merchant);
 });
 
