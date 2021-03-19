@@ -10,6 +10,9 @@ class LoanDetailAdmin extends Component {
         this.state = {
             business: {
             },
+            merchant: {
+
+            },
             isLoaded: false,
             status: {
             }
@@ -29,11 +32,6 @@ class LoanDetailAdmin extends Component {
         this.setState({
             status: this.state.statusUpdate
         });
-        /*
-                const statusObject = {
-                    currentStatus: this.state.statusUpdate
-                }
-        */
         const user = JSON.parse(localStorage["user"]);
         const token = user.token;
 
@@ -64,8 +62,20 @@ class LoanDetailAdmin extends Component {
         })
             .then(res => {
                 this.setState({ business: res.data, isLoaded: true })
-                //console.log(res.data);
+                const merch = res.data.merchantId;
+                console.log(merch);
             })
+            .then(
+                axios({
+                    method: 'get',
+                    url: `${url}/merchants/${merch}`,
+                })
+                .then(res => {
+                    this.setState({ merchant: res.data, isLoaded: true })
+                    console.log(merchant);
+                })
+            )
+            
             .catch(function (error) {
                 console.log(error);
             });
@@ -87,6 +97,9 @@ class LoanDetailAdmin extends Component {
                             <label>Business Name: </label>
                             <h5>{this.state.business.businessName}</h5>
                         </div>
+                        <div class="col">
+                            <h3>{this.state.merchant.accountHolderName}</h3>
+                        </div>
 
                         <div class="col">
                             <label>Loan application value:</label>
@@ -106,8 +119,9 @@ class LoanDetailAdmin extends Component {
                                 <label>Update status:</label>
                                 <p>
                                 <select statusUpdate={this.state.statusUpdate} onChange={this.handleChange}>
-                                    <option statusUpdate="pending">Pending</option>
-                                    <option statusUpdate="forwarded">Forwarded</option>
+                                    <option statusUpdate="requested">Documentation Requested</option>
+                                    <option statusUpdate="pending">Pending Approval</option>
+                                    <option statusUpdate="rejected">Rejected</option>
                                     <option statusUpdate="approved">Approved</option>
                                 </select>
                                 <input type="submit" value="Update" />

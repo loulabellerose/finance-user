@@ -12,7 +12,7 @@ router.get('/', auth, async (req, res) => {
   })
 });
 
-router.get('/:id', auth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   const business = await Business.findById(req.params.id);
   //check parameter for business id
   if (!business) return res.status(404).send('Business not found.');

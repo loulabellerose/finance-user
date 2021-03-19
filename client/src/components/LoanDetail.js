@@ -106,9 +106,9 @@ class LoanDetail extends Component {
                                 <label>Update status:</label>
                                 <p>
                                 <select statusUpdate={this.state.statusUpdate} onChange={this.handleChange}>
-                                    <option statusUpdate="pending">Pending</option>
-                                    <option statusUpdate="forwarded">Forwarded</option>
-                                    <option statusUpdate="approved">Approved</option>
+                                    <option statusUpdate="docsRequested">Documentation Requested</option>
+                                    <option statusUpdate="pending">Pending Approval</option>
+                                    <option statusUpdate="rejected">Rejected</option>
                                 </select>
                                 <input type="submit" value="Update" />
                                 </p>
