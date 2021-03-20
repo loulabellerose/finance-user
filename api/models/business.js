@@ -19,9 +19,9 @@ const businessSchema = new db.Schema({
   averageTransactionValue: {
       type: Number
   },
-  pushToken: {
-      type:  String
-  },
+  //pushToken: {
+    //  type:  String
+  //},
   loan: {
     type: loanSchema
   }
