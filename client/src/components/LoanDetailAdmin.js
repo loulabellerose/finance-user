@@ -50,7 +50,20 @@ class LoanDetailAdmin extends Component {
             }).catch((error) => {
                 console.log(error)
             });
+        await axios({
+            method: 'get',
+            url: `${url}/merchants/${this.props.match.params.merchantId}`,
+            headers: { token: token }
+        })
+            .then(res => {
+                this.setState({ merchant: res.data })
+                console.log(res.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
+
 
     async componentDidMount() {
         const user = JSON.parse(localStorage["user"]);
@@ -70,12 +83,12 @@ class LoanDetailAdmin extends Component {
                     method: 'get',
                     url: `${url}/merchants/${merch}`,
                 })
-                .then(res => {
-                    this.setState({ merchant: res.data, isLoaded: true })
-                    console.log(merchant);
-                })
+                    .then(res => {
+                        this.setState({ merchant: res.data, isLoaded: true })
+                        console.log(merchant);
+                    })
             )
-            
+
             .catch(function (error) {
                 console.log(error);
             });
@@ -118,13 +131,13 @@ class LoanDetailAdmin extends Component {
                             <form onSubmit={this.handleSubmit}>
                                 <label>Update status:</label>
                                 <p>
-                                <select statusUpdate={this.state.statusUpdate} onChange={this.handleChange}>
-                                    <option statusUpdate="requested">Documentation Requested</option>
-                                    <option statusUpdate="pending">Pending Approval</option>
-                                    <option statusUpdate="rejected">Rejected</option>
-                                    <option statusUpdate="approved">Approved</option>
-                                </select>
-                                <input type="submit" value="Update" />
+                                    <select statusUpdate={this.state.statusUpdate} onChange={this.handleChange}>
+                                        <option statusUpdate="requested">Documentation Requested</option>
+                                        <option statusUpdate="pending">Pending Approval</option>
+                                        <option statusUpdate="rejected">Rejected</option>
+                                        <option statusUpdate="approved">Approved</option>
+                                    </select>
+                                    <input type="submit" value="Update" />
                                 </p>
                             </form>
                         </div>
@@ -141,8 +154,42 @@ class LoanDetailAdmin extends Component {
                             <h5> £{this.state.business.averageTransactionValue}</h5>
                         </div>
                     </div>
+
+                    <div className="form-row">
+                        <div class="col">
+                            <label>Merchant Account Holder:</label>
+                            <h5> £{this.state.merchant.accountHolderName}</h5>
+                        </div>
+
+                        <div class="col">
+                            <label>Merchant Email:</label>
+                            <h5> £{this.state.merchant.email}</h5>
+                        </div>
+                    </div>
+
+                    <div className="form-row">
+                        <div class="col">
+                            <label>Merchant Address:</label>
+                            <h5> £{this.state.merchant.postalAddress}</h5>
+                        </div>
+
+                        <div class="col">
+                            <label>Merchant Contact No:</label>
+                            <h5> £{this.state.merchant.phone}</h5>
+                        </div>
+                    </div>
+
+                    <div className="form-row">
+                        <div class="col">
+                            <label>Uploaded Documentation:</label>
+                            <img src={this.state.business.loan.documents} />
+                        </div>
+
+                    </div>
+
                 </div>
             )
+
         }
     }
 }

@@ -33,10 +33,24 @@ class LoanList extends Component {
         return this.state.loansCollection.map((data, i) => {
             if (data.loan) {
                 const arrayLength = data.loan.status.length;
+                const statusId = data.loan.status.statusId.toString().substring(0, 8);
+                var timestamp = new Date(parseInt(statusId, 16) * 1000);
+                timestamp = timestamp.toDateString();
+                /*
+                if current status is         
+                'No Loan Application Submitted',
+                'Submitted by Merchant',
+                'Documentation Requested',
+                'Documentation Submitted', 
+                'Pending Approval',
+                'Approved',
+                'Rejected'
+                */
                 return <tr>
                     <td><a href={`/dashboard/loans/${data._id}`}>{data.businessName}</a></td>
                     <td>${data.loan.amount}</td>
                     <td>{data.loan.status[arrayLength-1].currentStatus}</td>
+                    <td>{timestamp}</td>
                 </tr>;
             }
         });
@@ -51,6 +65,7 @@ class LoanList extends Component {
                             <td>Merchant </td>
                             <td>Amount Requested</td>
                             <td>Application Status</td>
+                            <td>Most Recent Update</td>
                         </tr>
                     </thead>
                     <tbody>
