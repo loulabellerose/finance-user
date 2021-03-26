@@ -170,7 +170,7 @@ class LoanDetail extends Component {
                     <div className="form-row">
                         <div class="col">
                             <label>Uploaded Documentation:</label>
-                            <img src={this.state.business.loan.documents} />
+                            <button href={this.state.business.loan.documents} class="btn btn-sm btn-outline-secondary">View Documentation</button>
                         </div>
 
                     </div>

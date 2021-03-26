@@ -158,31 +158,31 @@ class LoanDetailAdmin extends Component {
                     <div className="form-row">
                         <div class="col">
                             <label>Merchant Account Holder:</label>
-                            <h5> £{this.state.merchant.accountHolderName}</h5>
+                            <h5>{this.state.merchant.accountHolderName}</h5>
                         </div>
 
                         <div class="col">
                             <label>Merchant Email:</label>
-                            <h5> £{this.state.merchant.email}</h5>
+                            <h5> {this.state.merchant.email}</h5>
                         </div>
                     </div>
 
                     <div className="form-row">
                         <div class="col">
                             <label>Merchant Address:</label>
-                            <h5> £{this.state.merchant.postalAddress}</h5>
+                            <h5> {this.state.merchant.postalAddress}</h5>
                         </div>
 
                         <div class="col">
                             <label>Merchant Contact No:</label>
-                            <h5> £{this.state.merchant.phone}</h5>
+                            <h5> {this.state.merchant.phone}</h5>
                         </div>
                     </div>
 
                     <div className="form-row">
                         <div class="col">
                             <label>Uploaded Documentation:</label>
-                            <img src={this.state.business.loan.documents} />
+                            <button href={this.state.business.loan.documents} class="btn btn-sm btn-outline-secondary">View Documentation</button>
                         </div>
 
                     </div>
