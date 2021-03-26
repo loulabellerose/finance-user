@@ -170,7 +170,7 @@ class LoanDetail extends Component {
                     <div className="form-row">
                     <div class="col">
                             <label>Uploaded Documentation:</label>
-                            <a href={`/dashboard/loans/:loanId/docs`}>View Documentation</a>
+                            <a href={`/dashboard/loans/${loan.loan._id}/docs`}>View Documentation</a>
                         </div>
 
                     </div>
