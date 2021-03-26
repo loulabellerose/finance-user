@@ -168,9 +168,9 @@ class LoanDetail extends Component {
                     </div>
 
                     <div className="form-row">
-                        <div class="col">
+                    <div class="col">
                             <label>Uploaded Documentation:</label>
-                            <button href={this.state.business.loan.documents} class="btn btn-sm btn-outline-secondary">View Documentation</button>
+                            <a href={`/docs`}>View Documentation</a>
                         </div>
 
                     </div>

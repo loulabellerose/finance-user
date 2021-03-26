@@ -13,6 +13,7 @@ import LoanList from './components/LoanList';
 import LoanDetail from './components/LoanDetail';
 import Error from './components/Error';
 import Page404 from "./components/Page404";
+import Documentation from "./components/Documentation";
 
 // admin only views
 import LoanListAdmin from './components/LoanListAdmin';
@@ -35,6 +36,7 @@ function App() {
             <Switch>
               <Route exact path="/dashboard" component={LoanList} />
               <Route exact path="/dashboard/loans/:loanId" component={LoanDetail} />
+              <Route exact path="/dashboard/loans/:loanId/docs" component={Documentation} />
             </Switch>
           </Dashboard>
         </Route>
@@ -47,6 +49,7 @@ function App() {
               <Route exact path="/admin/users/new" component={CreateUser} />
               <Route exact path="/admin/users/:userId" component={UserDetail} />
               <Route exact path="/admin/loans/:loanId" component={LoanDetail} />
+              <Route exact path="/admin/loans/:loanId/docs" component={Documentation} />
             </Switch>
           </AdminDashboard>
         </Route>
