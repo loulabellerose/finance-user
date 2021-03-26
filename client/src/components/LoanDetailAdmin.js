@@ -102,6 +102,7 @@ class LoanDetailAdmin extends Component {
             const loan = {
                 loan: this.state.business.loan
             };
+            console.log(loan.loan._id);
             const arrayLength = loan.loan.status.length;
             return (
                 <div className="wrapper">
@@ -182,7 +183,7 @@ class LoanDetailAdmin extends Component {
                     <div className="form-row">
                         <div class="col">
                             <label>Uploaded Documentation:</label>
-                            <a href={`/admin/loans/:loanId/docs`}>View Documentation</a>
+                            <a href={`/admin/loans/${loan.loan._id}/docs`}>View Documentation</a>
                         </div>
 
                     </div>
