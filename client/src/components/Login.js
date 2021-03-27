@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { config } from '../Constants';
 import Header from './Header';
+import './Login.css';
 var url = config.url.API_URL;
 
 export default class Login extends Component {
@@ -54,12 +55,17 @@ export default class Login extends Component {
       <div className="App">
         <div class="container">
           <Header />
-          <div className="row">
+          <div className="row justify-content-center">
 
-            <div className="col-8">
+            
               <form onSubmit={this.onSubmit}>
+              <div class="login-container">
 
                 <h1>Login Below</h1>
+                </div>
+                <div className="row">
+                <div class="col">
+                <div class="form-group">
                 <input
                   type="email"
                   name="email"
@@ -68,6 +74,12 @@ export default class Login extends Component {
                   onChange={this.handleInputChange}
                   required
                 />
+                </div>
+                </div>
+                </div>
+                <div className="row">
+                <div class="col">
+                <div class="form-group">
                 <input
                   type="password"
                   name="password"
@@ -76,10 +88,17 @@ export default class Login extends Component {
                   onChange={this.handleInputChange}
                   required
                 />
+                </div>
+                </div>
+                </div>
+                <div className="row">
+                <div class="col">
                 <input type="submit" value="Submit" />
+                </div>
+                </div>
               </form>
 
-            </div>
+            
           </div>
         </div>
       </div>
