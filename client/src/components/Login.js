@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { config } from '../Constants';
+import Header from './Header';
 var url = config.url.API_URL;
 
 export default class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      email : '',
+      email: '',
       password: ''
     };
   }
@@ -26,50 +27,63 @@ export default class Login extends Component {
         'Content-Type': 'application/json'
       }
     })
-    .then(async res => {
-      if (res.status === 200) {
-        let currentUser = await res.text();
-        localStorage.setItem('user', currentUser);
-        let parsed = JSON.parse(currentUser);
-        if(parsed.role === "Admin"){
-          this.props.history.push('/admin');
+      .then(async res => {
+        if (res.status === 200) {
+          let currentUser = await res.text();
+          localStorage.setItem('user', currentUser);
+          let parsed = JSON.parse(currentUser);
+          if (parsed.role === "Admin") {
+            this.props.history.push('/admin');
+          }
+          else {
+            this.props.history.push('/dashboard');
+          }
+        } else {
+          const error = new Error(res.error);
+          throw error;
         }
-        else {
-        this.props.history.push('/dashboard');
-        }
-      } else {
-        const error = new Error(res.error);
-        throw error;
-      }
-    })
-    .catch(err => {
-      console.error(err);
-      alert('Error logging in please try again');
-    });
+      })
+      .catch(err => {
+        console.error(err);
+        alert('Error logging in please try again');
+      });
   }
 
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <h1>Login Below!</h1>
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter email"
-          value={this.state.email}
-          onChange={this.handleInputChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter password"
-          value={this.state.password}
-          onChange={this.handleInputChange}
-          required
-        />
-       <input type="submit" value="Submit"/>
-      </form>
+      <div className="App">
+        <div class="container">
+          <Header />
+          <div className="row">
+
+            <div className="col-8">
+              <form onSubmit={this.onSubmit}>
+
+                <h1>Login Below</h1>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter email"
+                  value={this.state.email}
+                  onChange={this.handleInputChange}
+                  required
+                />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter password"
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                  required
+                />
+                <input type="submit" value="Submit" />
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
     );
   }
 }
