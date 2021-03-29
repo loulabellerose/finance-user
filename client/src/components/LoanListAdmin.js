@@ -33,11 +33,13 @@ class LoanList extends Component {
         return this.state.loansCollection.map((data, i) => {
             if (data.loan) {
                 const arrayLength = data.loan.status.length;
+                console.log(data.loan.status[arrayLength-1].created);
+                console.log(data.loan.status[status.arrayLength-1].created);
                 return <tr>
                     <td><a href={`/admin/loans/${data._id}`}>{data.businessName}</a></td>
                     <td>${data.loan.amount}</td>
                     <td>{data.loan.status[arrayLength-1].currentStatus}</td>
-                    <td>{data.loan.status[arrayLength-1].createdAt}</td>
+                    <td>{data.loan.status[arrayLength-1].created}</td>
                 </tr>;
             }
         });
