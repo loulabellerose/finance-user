@@ -4,9 +4,12 @@ const statusSchema = new db.Schema ({
     currentStatus: {
         type: String
     },
-    timestamps: { 
-        createdAt: Date() 
+    timestamps: true,
+    createdAt: {
+        type: Date, 
+        default: Date.now
     }
+    
 });
 
 const Status = db.model('Status', statusSchema);
