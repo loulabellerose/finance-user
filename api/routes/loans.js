@@ -52,7 +52,7 @@ router.post('/:id', async (req, res) => {
   };
   business.loan.status.push(statusUpdate.status);
   const update = '';
-/*
+
   //Below calls function to send push notification to merchant's device if status update matches condition
   if (statusUpdate.status.currentStatus == 'Documentation Requested') {
     update = 'Update to loan application status: documentation has been requested';
@@ -68,13 +68,13 @@ router.post('/:id', async (req, res) => {
     update = 'Update to loan application status: yourloan application was rejected';
     nofityUser(update, pushToken);
   }
-  */
+  
   const success = await business.save();
   res.send(success);
 });
-/*
+
 const notifyUser = (update, pushToken) => {
-  let expo = new Expo();
+  //let expo = new Expo();
   let message = '';
 
   // Get the user's pushToken from DB. Each push token looks like ExponentPushToken[xxxxxxxxxxxxxxxxxxxxxx]
@@ -89,8 +89,8 @@ const notifyUser = (update, pushToken) => {
     to: pushToken,
     sound: 'default',
     body: `${update}`,
-    data: { withSome: 'data' },
+    data: { body },
   })
 };
-*/
+
 module.exports = router;
