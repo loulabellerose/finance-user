@@ -52,6 +52,7 @@ router.post('/:id', async (req, res) => {
   };
   business.loan.status.push(statusUpdate.status);
   const update = '';
+  const pushToken = business.pushToken;
 
   //Below calls function to send push notification to merchant's device if status update matches condition
   if (statusUpdate.status.currentStatus == 'Documentation Requested') {
