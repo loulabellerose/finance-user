@@ -15,7 +15,10 @@ const loanSchema = new db.Schema ({
     },
     status: {
         type: [statusSchema],
-        timestamps: true
+        timestamps: { 
+            createdAt: 'created', 
+            updatedAt: 'updated' 
+        }
     },
     documents: {
         type: String
