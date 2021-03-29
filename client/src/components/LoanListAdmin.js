@@ -39,7 +39,7 @@ class LoanList extends Component {
                     <td><a href={`/admin/loans/${data._id}`}>{data.businessName}</a></td>
                     <td>${data.loan.amount}</td>
                     <td>{data.loan.status[arrayLength-1].currentStatus}</td>
-                    <td>{data.loan.status[arrayLength-1].created}</td>
+                    <td>{data.loan.status[arrayLength-1].createdAt}</td>
                 </tr>;
             }
         });
