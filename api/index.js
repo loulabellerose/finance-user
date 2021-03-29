@@ -18,13 +18,15 @@ if (!config.get('jwtPrivateKey')) {
   console.error('FATAL ERROR: jwtPrivateKey is not defined.');
   process.exit(1);
 }
+app.use(express.json());
+app.use(cors());
+app.options('*', cors());
 
 db.connect(database)
   .then(() => console.log('Connected to database'))
   .catch(err => console.error('Unable to connect to database'));
 
-app.use(express.json());
-app.use(cors());
+
 //app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(bodyParser.json());
 
