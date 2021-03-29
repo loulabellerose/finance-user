@@ -14,7 +14,8 @@ const loanSchema = new db.Schema ({
         max: 10000.00
     },
     status: {
-        type: [statusSchema]
+        type: [statusSchema],
+        timestamps: true
     },
     documents: {
         type: String

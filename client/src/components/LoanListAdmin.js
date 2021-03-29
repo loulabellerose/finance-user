@@ -37,6 +37,7 @@ class LoanList extends Component {
                     <td><a href={`/admin/loans/${data._id}`}>{data.businessName}</a></td>
                     <td>${data.loan.amount}</td>
                     <td>{data.loan.status[arrayLength-1].currentStatus}</td>
+                    <td>{data.loan.status._id}</td>
                 </tr>;
             }
         });
@@ -51,6 +52,7 @@ class LoanList extends Component {
                             <td>Merchant </td>
                             <td>Amount Requested</td>
                             <td>Application Status</td>
+                            <td>Last Updated</td>
                         </tr>
                     </thead>
                     <tbody>
