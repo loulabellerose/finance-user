@@ -52,7 +52,7 @@ class LoanList extends Component {
                             <td>Merchant </td>
                             <td>Amount Requested</td>
                             <td>Application Status</td>
-                            <td>Last Updated</td>
+                            <td>Most Recently Updated</td>
                         </tr>
                     </thead>
                     <tbody>
