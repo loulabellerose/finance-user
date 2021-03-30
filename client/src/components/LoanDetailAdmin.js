@@ -64,7 +64,36 @@ class LoanDetailAdmin extends Component {
             });
     }
 
+    async componentDidMount() {
+        const user = JSON.parse(localStorage["user"]);
+        const token = user.token;
+        await axios({
+            method: 'get',
+            url: `${url}/business/${this.props.match.params.loanId}`,
+            headers: { token: token }
+        })
+            .then(res => {
+                this.setState({ business: res.data, isLoaded: true })
+                //console.log(res.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        await axios({
+            method: 'get',
+            url: `${url}/merchants/${this.state.business.merchantId}`,
+            headers: { token: token }
+        })
+            .then(res => {
+                this.setState({ merchant: res.data })
+                console.log(res.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
+/*
     async componentDidMount() {
         const user = JSON.parse(localStorage["user"]);
         const token = user.token;
@@ -93,7 +122,7 @@ class LoanDetailAdmin extends Component {
                 console.log(error);
             });
     }
-
+*/
     render() {
         if (!this.state.isLoaded) {
             return (<div>Loading...</div>);

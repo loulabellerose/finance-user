@@ -74,7 +74,7 @@ class LoanDetail extends Component {
             });
         await axios({
             method: 'get',
-            url: `${url}/merchants/${this.props.match.params.merchantId}`,
+            url: `${url}/merchants/${this.state.business.merchantId}`,
             headers: { token: token }
         })
             .then(res => {
