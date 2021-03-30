@@ -9,7 +9,6 @@ const statusSchema = new db.Schema ({
         type: Date, 
         default: Date.now
     }
-    
 });
 
 const Status = db.model('Status', statusSchema);
