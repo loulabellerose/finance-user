@@ -24,13 +24,17 @@ db.connect(database)
   .catch(err => console.error('Unable to connect to database'));
 
 app.use(express.json());
-app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://pure-reef-66274.herokuapp.com"); 
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+//app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.json());
 
 app.use('/users', users);
 app.use('/loans', loans);
-//does the below make sense? something nested would be better
 app.use('/loans/:id/status', status);
 app.use('/login', login);
 app.use('/merchants', merchants);
