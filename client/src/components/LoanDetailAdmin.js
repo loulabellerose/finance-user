@@ -34,6 +34,8 @@ class LoanDetailAdmin extends Component {
         });
         const user = JSON.parse(localStorage["user"]);
         const token = user.token;
+        console.log(status);
+        console.log(this.state.statusUpdate);
 
         axios({
             method: 'post',
