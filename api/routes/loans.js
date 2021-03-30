@@ -9,6 +9,24 @@ const express = require('express');
 const router = express.Router();
 const { Expo } = require('expo-server-sdk');
 
+const notifyUser = (update, pushToken) => {
+  let expo = new Expo();
+  let message = '';
+  
+  // Check that push token appears to be valid Expo push token
+  if (!Expo.isExpoPushToken(pushToken)) {
+    console.error(`Push token ${pushToken} is not a valid Expo push token`);
+    //continue;
+  }
+  // Construct a message (see https://docs.expo.io/push-notifications/sending-notifications/)
+  message.push({
+    to: pushToken,
+    sound: 'default',
+    body: `${update}`,
+    data: { body },
+  })
+};
+
 router.get('/', auth, async (req, res) => {
   await Loan.find({}).then(eachOne => {
     res.json(eachOne);
@@ -71,25 +89,5 @@ router.post('/:id', async (req, res) => {
   res.send(success);
   notifyUser(update, pushToken);
 });
-
-const notifyUser = (update, pushToken) => {
-  //let expo = new Expo();
-  let message = '';
-
-  // Get the user's pushToken from DB. Each push token looks like ExponentPushToken[xxxxxxxxxxxxxxxxxxxxxx]
-
-  // Check that push token appears to be valid Expo push token
-  if (!Expo.isExpoPushToken(pushToken)) {
-    console.error(`Push token ${pushToken} is not a valid Expo push token`);
-    //continue;
-  }
-  // Construct a message (see https://docs.expo.io/push-notifications/sending-notifications/)
-  message.push({
-    to: pushToken,
-    sound: 'default',
-    body: `${update}`,
-    data: { body },
-  })
-};
 
 module.exports = router;
