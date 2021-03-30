@@ -32,11 +32,6 @@ class LoanDetail extends Component {
         this.setState({
             status: this.state.statusUpdate
         });
-        /*
-                const statusObject = {
-                    currentStatus: this.state.statusUpdate
-                }
-        */
         const user = JSON.parse(localStorage["user"]);
         const token = user.token;
 

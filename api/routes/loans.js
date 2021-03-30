@@ -57,21 +57,19 @@ router.post('/:id', async (req, res) => {
   //Below calls function to send push notification to merchant's device if status update matches condition
   if (statusUpdate.status.currentStatus == 'Documentation Requested') {
     update = 'Update to loan application status: documentation has been requested';
-    nofityUser(update, pushToken);
   }
 
   else if (statusUpdate.status.currentStatus == 'Approved') {
     update = 'Update to loan application status: your loan application was approved!';
-    nofityUser(update, pushToken);
-
   }
+
   else if (statusUpdate.status.currentStatus == 'Rejected') {
     update = 'Update to loan application status: yourloan application was rejected';
-    nofityUser(update, pushToken);
   }
   
   const success = await business.save();
   res.send(success);
+  notifyUser(update, pushToken);
 });
 
 const notifyUser = (update, pushToken) => {
