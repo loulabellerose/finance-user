@@ -23,13 +23,8 @@ db.connect(database)
   .then(() => console.log('Connected to database'))
   .catch(err => console.error('Unable to connect to database'));
 
+app.use(cors());
 app.use(express.json());
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://pure-reef-66274.herokuapp.com"); 
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 //app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(bodyParser.json());
 
