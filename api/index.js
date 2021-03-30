@@ -24,15 +24,7 @@ db.connect(database)
   .catch(err => console.error('Unable to connect to database'));
 
 app.use(express.json());
-app.use(
-  cors({
-    allowedHeaders: ["authorization", "Content-Type"], 
-    exposedHeaders: ["authorization"], 
-    origin: "*",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    preflightContinue: false
-  })
-);
+app.use(cors());
 
 //app.use(bodyParser.urlencoded({ extended: false }));
 //app.use(bodyParser.json());

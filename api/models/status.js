@@ -4,7 +4,6 @@ const statusSchema = new db.Schema ({
     currentStatus: {
         type: String
     },
-    timestamps: true,
     createdAt: {
         type: Date, 
         default: Date.now
