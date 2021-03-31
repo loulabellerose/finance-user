@@ -120,11 +120,11 @@ class LoanDetailAdmin extends Component {
                                 <label>Update status:</label>
                                 <p>
                                     <select value={this.state.statusUpdate} onChange={this.handleChange}>
-                                        <option statusUpdate="">SELECT: </option>
-                                        <option statusUpdate="requested">Documentation Requested</option>
-                                        <option statusUpdate="pending">Pending Approval</option>
-                                        <option statusUpdate="rejected">Rejected</option>
-                                        <option statusUpdate="approved">Approved</option>
+                                        <option>SELECT: </option>
+                                        <option value="requested">Documentation Requested</option>
+                                        <option value="pending">Pending Approval</option>
+                                        <option value="rejected">Rejected</option>
+                                        <option value="approved">Approved</option>
                                     </select>
                                     <input type="submit" value="Update" />
                                 </p>
