@@ -27,11 +27,14 @@ class LoanDetailAdmin extends Component {
     }
 
     handleSubmit(e) {
+        e.preventDefault();
+
         this.setState({
             status: this.state.statusUpdate
         });
         const user = JSON.parse(localStorage["user"]);
         const token = user.token;
+
         axios({
             method: 'post',
             url: `${url}/loans/${this.props.match.params.loanId}`,
@@ -91,36 +94,36 @@ class LoanDetailAdmin extends Component {
             return (
                 <div className="wrapper">
                     <div className="form-row">
-                        <div class="col">
+                        <div className="col">
                             <label>Business Name: </label>
                             <h5>{this.state.business.businessName}</h5>
                         </div>
-                        <div class="col">
+                        <div className="col">
                             <h3>{this.state.merchant.accountHolderName}</h3>
                         </div>
 
-                        <div class="col">
+                        <div className="col">
                             <label>Loan application value:</label>
                             <h5>£{loan.loan.amount} </h5>
                         </div>
                     </div>
 
                     <div className="form-row">
-                        <div class="col">
+                        <div className="col">
                             <label>Current status:</label>
                             <h5>{loan.loan.status[arrayLength - 1].currentStatus} </h5>
                         </div>
 
 
-                        <div class="col">
+                        <div className="col">
                             <form onSubmit={this.handleSubmit}>
                                 <label>Update status:</label>
                                 <p>
-                                    <select statusUpdate={this.state.statusUpdate} onChange={this.handleChange}>
-                                        <option statusUpdate="requested">Documentation Requested</option>
-                                        <option statusUpdate="pending">Pending Approval</option>
-                                        <option statusUpdate="rejected">Rejected</option>
-                                        <option statusUpdate="approved">Approved</option>
+                                    <select value={this.state.statusUpdate} onChange={this.handleChange}>
+                                        <option value="requested">Documentation Requested</option>
+                                        <option value="pending">Pending Approval</option>
+                                        <option value="rejected">Rejected</option>
+                                        <option value="approved">Approved</option>
                                     </select>
                                     <input type="submit" value="Update" />
                                 </p>
@@ -129,43 +132,43 @@ class LoanDetailAdmin extends Component {
                     </div>
 
                     <div className="form-row">
-                        <div class="col">
+                        <div className="col">
                             <label>Gross Monthly Sales:</label>
                             <h5> £{this.state.business.grossMonthlySales}</h5>
                         </div>
 
-                        <div class="col">
+                        <div className="col">
                             <label>Average Transaction Value:</label>
                             <h5> £{this.state.business.averageTransactionValue}</h5>
                         </div>
                     </div>
 
                     <div className="form-row">
-                        <div class="col">
+                        <div className="col">
                             <label>Merchant Account Holder:</label>
                             <h5>{this.state.merchant.accountHolderName}</h5>
                         </div>
 
-                        <div class="col">
+                        <div className="col">
                             <label>Merchant Email:</label>
                             <h5> {this.state.merchant.email}</h5>
                         </div>
                     </div>
 
                     <div className="form-row">
-                        <div class="col">
+                        <div className="col">
                             <label>Merchant Address:</label>
                             <h5> {this.state.merchant.postalAddress}</h5>
                         </div>
 
-                        <div class="col">
+                        <div className="col">
                             <label>Merchant Contact No:</label>
                             <h5> {this.state.merchant.phone}</h5>
                         </div>
                     </div>
 
                     <div className="form-row">
-                        <div class="col">
+                        <div className="col">
                             <label>Uploaded Documentation:</label>
                             <a href={`/admin/loans/${loan.loan._id}/docs`}>View Documentation</a>
                         </div>
