@@ -17,6 +17,7 @@ import Documentation from "./components/Documentation";
 
 // admin only views
 import LoanListAdmin from './components/LoanListAdmin';
+import LoanDetailAdmin from './components/LoanDetailAdmin';
 import CreateUser from './components/CreateUser';
 import UserList from './components/UserList';
 import UserDetail from './components/UserDetail';
@@ -48,7 +49,7 @@ function App() {
               <Route exact path="/admin/users" component={UserList} />
               <Route exact path="/admin/users/new" component={CreateUser} />
               <Route exact path="/admin/users/:userId" component={UserDetail} />
-              <Route exact path="/admin/loans/:loanId" component={LoanDetail} />
+              <Route exact path="/admin/loans/:loanId" component={LoanDetailAdmin} />
               <Route exact path="/admin/loans/:loanId/docs" component={Documentation} />
             </Switch>
           </AdminDashboard>
