@@ -96,9 +96,6 @@ class LoanDetailAdmin extends Component {
                             <label>Business Name: </label>
                             <h5>{this.state.business.businessName}</h5>
                         </div>
-                        <div className="col">
-                            <h3>{this.state.merchant.accountHolderName}</h3>
-                        </div>
 
                         <div className="col">
                             <label>Loan application value:</label>
