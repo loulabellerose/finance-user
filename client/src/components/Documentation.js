@@ -1,13 +1,11 @@
+import Image from 'react-bootstrap/Image';
 
+export default function Documentation(props) {
+  let { loanId } = useParams();
 
-export default function Documentation (props) {
-  console.log(this.props.match.params);
-  
-    return (
-      <div className="wrapper">
-          <div class="img-fluid">
-              <img src={`https://rise-app-40245759.s3-eu-west-1.amazonaws.com/uploads/${this.props.match.params}`} max-width="100%"/>
-          </div>
-        </div>
-      )
+  return (
+    <div className="wrapper">
+      <Image src={`https://rise-app-40245759.s3-eu-west-1.amazonaws.com/uploads/${loanId}`} fluid />
+    </div>
+  )
 }
