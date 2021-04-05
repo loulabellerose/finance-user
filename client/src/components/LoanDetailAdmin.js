@@ -166,7 +166,7 @@ class LoanDetailAdmin extends Component {
                     <div className="form-row">
                         <div className="col">
                             <label>Uploaded Documentation:</label>
-                            <a href={`/admin/loans/${loan.loan._id}/docs`}>View Documentation</a>
+                            <a href={`/admin/loans/${this.state.business._id}/docs`}>View Documentation</a>
                         </div>
 
                     </div>
