@@ -5,8 +5,7 @@ const statusSchema = new db.Schema ({
         type: String
     },
     createdAt: {
-        type: Date, 
-        default: Date.now
+        type: new Date()
     }
 });
 
