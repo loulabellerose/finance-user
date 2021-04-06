@@ -33,12 +33,11 @@ class LoanList extends Component {
         return this.state.loansCollection.map((data, i) => {
             if (data.loan) {
                 const arrayLength = data.loan.status.length;
-                var update = new Intl.DateTimeFormat('en-GB').format(data.loan.status[arrayLength-1].createdAt);
                 return <tr>
                     <td><a href={`/admin/loans/${data._id}`}>{data.businessName}</a></td>
                     <td>${data.loan.amount}</td>
                     <td>{data.loan.status[arrayLength-1].currentStatus}</td>
-                    <td>{update}</td>
+                    <td>{data.loan.status[arrayLength-1].createdAt.toLocaleDateString()}</td>
                 </tr>
             }
         });
