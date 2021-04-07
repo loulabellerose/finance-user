@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { config } from '../Constants';
+import moment from 'moment';
+
 var url = config.url.API_URL;
 
 class LoanList extends Component {
@@ -29,7 +31,22 @@ class LoanList extends Component {
             })
     }
 
+    sortLoans() {
+        
+
+        const collectionUnsorted = [this.state.loansCollection];
+        console.log(collectionUnsorted);
+
+        const collectionSorted = collectionUnsorted.sort((a, b) => b.loan.status.createdAt - a.loan.status.createdAt);
+        console.log(collectionSorted);
+
+        return (
+            collectionSorted
+        )
+    }
+
     getAllBusinessesWithLoans() {
+        console.log(this.sortLoans());
         return this.state.loansCollection.map((data, i) => {
             if (data.loan) {
                 const arrayLength = data.loan.status.length;
