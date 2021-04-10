@@ -10,7 +10,7 @@ const router = express.Router();
 const { Expo } = require('expo-server-sdk');
 const expo = new Expo();
 
-const notifyUser = ( update, [somePushTokens] ) => {
+const notifyUser = ( update, somePushTokens ) => {
   
   // Create the messages that you want to send to clients
   let messages = [];
