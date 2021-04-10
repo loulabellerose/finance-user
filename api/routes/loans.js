@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const express = require('express');
 const router = express.Router();
-const { Expo, default: Expo } = require('expo-server-sdk');
+const { Expo } = require('expo-server-sdk');
 const Expo = new Expo();
 
 const notifyUser = (update, pushToken) => {
