@@ -69,12 +69,21 @@ router.post('/:id', async (req, res) => {
     }
   };
   business.loan.status.push(statusUpdate.status);
-  const update = '';
-  const pushToken = business.pushToken;
-  console.log(statusUpdate.status.currentStatus);
-  console.log(req.body.currentStatus);
+
+  const success = await business.save();
+  res.send(success);
+
+});
+
+router.post('/:id/notify', async (req, res) => {
+  const business = await Business.findById(req.params.id);
+  if (!business) return res.status(404).send('Biz not found.');
+
+  const update = req.body.update;
+  const pushToken = business.pushToken;  
 
   //Below calls function to send push notification to merchant's device if status update matches condition
+  /*
   if (statusUpdate.status.currentStatus == 'Documentation Requested') {
     update = 'Update to loan application status: documentation has been requested';
   }
@@ -86,11 +95,13 @@ router.post('/:id', async (req, res) => {
   else if (statusUpdate.status.currentStatus == 'Rejected') {
     update = 'Update to loan application status: yourloan application was rejected';
   }
-  
-  const success = await business.save();
-  res.send(success);
-  //notifyUser(update, pushToken);
-  console.log(update);
-});
+  */
+    notifyUser(update, pushToken);
+    res.send("Notifcation sent");
+    console.log(update);
+
+
+
+})
 
 module.exports = router;
