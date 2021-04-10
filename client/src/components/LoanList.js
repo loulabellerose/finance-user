@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { config } from '../Constants';
 import moment from 'moment';
+import { clone } from 'lodash-es';
 
 var url = config.url.API_URL;
 
@@ -20,7 +21,7 @@ class LoanList extends Component {
         axios({
             method: 'get',
             url: `${url}/business`,
-            headers: {token: token }
+            headers: { token: token }
         })
             .then(res => {
                 this.setState({ loansCollection: res.data });
@@ -32,29 +33,32 @@ class LoanList extends Component {
     }
 
     sortLoans() {
-        
-
-        const collectionUnsorted = [this.state.loansCollection];
-        console.log(collectionUnsorted);
-
-        const collectionSorted = collectionUnsorted.sort((a, b) => b.loan.status.createdAt - a.loan.status.createdAt);
-        console.log(collectionSorted);
-
+        const cloneLoans = [...this.state.loansCollection];
+        for(let i = 0; i <= cloneLoans.length -1; i++)  {
+            for (let j = 0; j < cloneLoans.length-1; j++) {
+                const loan1 = cloneLoans[j];
+                const loan2 = cloneLoans[j+1];
+                if( (loan2.loan.status[loan2.loan.status.length-1].createdAt) > loan1.loan.status[loan1.loan.status.length-1].createdAt) {
+                    cloneLoans[j]  = loan2;
+                    cloneLoans[j+1] = loan1;
+                }
+            }
+        }
         return (
-            collectionSorted
+            cloneLoans
         )
     }
 
     getAllBusinessesWithLoans() {
-        console.log(this.sortLoans());
-        return this.state.loansCollection.map((data, i) => {
+        const sorted = this.sortLoans();
+        return sorted.map((data, i) => {
             if (data.loan) {
                 const arrayLength = data.loan.status.length;
                 return <tr>
                     <td><a href={`/dashboard/loans/${data._id}`}>{data.businessName}</a></td>
                     <td>${data.loan.amount}</td>
-                    <td>{data.loan.status[arrayLength-1].currentStatus}</td>
-                    <td>{new Date(data.loan.status[arrayLength-1].createdAt).toDateString()}</td>
+                    <td>{data.loan.status[arrayLength - 1].currentStatus}</td>
+                    <td>{new Date(data.loan.status[arrayLength - 1].createdAt).toLocaleString('en-GB')}</td>
                 </tr>;
             }
         });

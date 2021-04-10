@@ -29,15 +29,33 @@ class LoanList extends Component {
             })
     }
 
+    sortLoans() {
+        const cloneLoans = [...this.state.loansCollection];
+        for(let i = 0; i <= cloneLoans.length -1; i++)  {
+            for (let j = 0; j < cloneLoans.length-1; j++) {
+                const loan1 = cloneLoans[j];
+                const loan2 = cloneLoans[j+1];
+                if( (loan2.loan.status[loan2.loan.status.length-1].createdAt) > loan1.loan.status[loan1.loan.status.length-1].createdAt) {
+                    cloneLoans[j]  = loan2;
+                    cloneLoans[j+1] = loan1;
+                }
+            }
+        }
+        return (
+            cloneLoans
+        )
+    }
+
     getAllBusinessesWithLoans() {
-        return this.state.loansCollection.map((data, i) => {
+        const sorted = this.sortLoans();
+        return sorted.map((data, i) => {
             if (data.loan) {
                 const arrayLength = data.loan.status.length;
                 return <tr>
                     <td><a href={`/admin/loans/${data._id}`}>{data.businessName}</a></td>
                     <td>${data.loan.amount}</td>
                     <td>{data.loan.status[arrayLength-1].currentStatus}</td>
-                    <td>{new Date(data.loan.status[arrayLength-1].createdAt).toDateString()}</td>
+                    <td>{new Date(data.loan.status[arrayLength-1].createdAt).toLocaleString()}</td>
                 </tr>
             }
         });
