@@ -8,9 +8,10 @@ const fs = require('fs');
 const express = require('express');
 const router = express.Router();
 const { Expo } = require('expo-server-sdk');
+const expo = new Expo();
 
 const notifyUser = (update, pushToken) => {
-  let Expo = new Expo();
+  
   // Create the messages that you want to send to clients
   let messages = [];
   for (let pushToken of somePushTokens) {
@@ -56,7 +57,7 @@ let tickets = [];
     }
   }
 })();
-}
+};
 
 router.get('/', auth, async (req, res) => {
   await Loan.find({}).then(eachOne => {
@@ -130,9 +131,6 @@ router.post('/:id/notify', async (req, res) => {
     notifyUser(update, [userTokens]);
     res.send("Notifcation sent");
     console.log(update);
-
-
-
-})
+});
 
 module.exports = router;
