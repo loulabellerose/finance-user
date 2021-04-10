@@ -56,7 +56,7 @@ let tickets = [];
     }
   }
 })();
-
+}
 
 router.get('/', auth, async (req, res) => {
   await Loan.find({}).then(eachOne => {
