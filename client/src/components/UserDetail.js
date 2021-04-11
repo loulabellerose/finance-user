@@ -42,7 +42,7 @@ class UserDetail extends Component {
         })
             .then((res) => {
                 alert('User deleted');
-                this.props.history.push('/admin');
+                this.props.history.push('/admin/users');
             }).catch((error) => {
                 console.log(error)
             });
