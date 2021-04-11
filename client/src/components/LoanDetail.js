@@ -46,7 +46,7 @@ class LoanDetail extends Component {
             .then((res) => {
                 console.log(res.data)
                 alert(`Loan application status updated`)
-                //Add a redirect or reload here
+                window.location.reload(true);
             }).catch((error) => {
                 console.log(error)
             });

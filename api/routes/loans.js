@@ -128,9 +128,9 @@ router.post('/:id/notify', async (req, res) => {
     update = 'Update to loan application status: yourloan application was rejected';
   }
   */
-    notifyUser(update, [userTokens]);
+    notifyUser(update, userTokens);
     res.send("Notifcation sent");
-    console.log([userTokens]);
+    console.log(userTokens);
 });
 
 module.exports = router;

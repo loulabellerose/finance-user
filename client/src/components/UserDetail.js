@@ -4,7 +4,6 @@ import { config } from '../Constants';
 var url = config.url.API_URL;
 
 class UserDetail extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -12,6 +11,8 @@ class UserDetail extends Component {
 
             }
         };
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
     async componentDidMount() {
@@ -29,6 +30,22 @@ class UserDetail extends Component {
             .catch(function (error) {
                 console.log(error);
             })
+    }
+
+    handleClick() {
+        const user = JSON.parse(localStorage["user"]);
+        const token = user.token;
+        axios({
+            method: 'delete',
+            url: `${url}/users/${this.state.user._id}`,
+            headers: { token: token },
+        })
+            .then((res) => {
+                alert('User deleted');
+                this.props.history.push('/admin');
+            }).catch((error) => {
+                console.log(error)
+            });
     }
 
     render() {
@@ -55,9 +72,10 @@ class UserDetail extends Component {
                     <div class="col">
                         <label>Account Status</label>
                         <p>
-                        <button type="button" class="btn btn-danger">Delete User</button>
+                        <button type="button" class="btn btn-danger" onClick={this.handleClick}>
+                            Delete User
+                            </button>
                         </p>
-                        {/* Add functionality here */}
                     </div>
                 </div>
             </div >
