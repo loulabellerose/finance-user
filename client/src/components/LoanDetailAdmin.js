@@ -27,6 +27,7 @@ class LoanDetailAdmin extends Component {
     }
 
     handleSubmit(e) {
+        e.preventDefault()
       this.setState({
             status: this.state.statusUpdate
         });
@@ -41,6 +42,9 @@ class LoanDetailAdmin extends Component {
                 currentStatus: this.state.statusUpdate
             }
         })
+            .then(() => {
+                
+            })
             .then((res) => {
                 console.log(res.data)
                 alert(`Loan application status updated`)

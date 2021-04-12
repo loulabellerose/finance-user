@@ -114,21 +114,7 @@ router.post('/:id/notify', async (req, res) => {
 
   const update = req.body.update;
   const userTokens = [business.pushTokens];  
-
-  //Below calls function to send push notification to merchant's device if status update matches condition
-  /*
-  if (statusUpdate.status.currentStatus == 'Documentation Requested') {
-    update = 'Update to loan application status: documentation has been requested';
-  }
-
-  else if (statusUpdate.status.currentStatus == 'Approved') {
-    update = 'Update to loan application status: your loan application was approved!';
-  }
-
-  else if (statusUpdate.status.currentStatus == 'Rejected') {
-    update = 'Update to loan application status: yourloan application was rejected';
-  }
-  */
+  
     notifyUser(update, userTokens);
     res.send("Notifcation sent");
     console.log(userTokens);
