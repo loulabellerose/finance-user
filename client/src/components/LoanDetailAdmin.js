@@ -28,7 +28,7 @@ class LoanDetailAdmin extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const update = 'Update to your loan application status';
+        let update = 'Update to your loan application status';
 
         //Below calls function to send push notification to merchant's device if status update matches condition
 
