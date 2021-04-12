@@ -28,8 +28,24 @@ class LoanDetailAdmin extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-      this.setState({
-            status: this.state.statusUpdate
+
+        //Below calls function to send push notification to merchant's device if status update matches condition
+
+        if (this.state.statusUpdate == 'Documentation Requested') {
+            const update = 'Update to loan application status: documentation has been requested';
+        }
+
+        else if (this.state.statusUpdate == 'Approved') {
+            const update = 'Update to loan application status: your loan application was approved!';
+        }
+
+        else if (this.state.statusUpdate == 'Rejected') {
+            const update = 'Update to loan application status: your loan application was rejected';
+        }
+
+        this.setState({
+            status: this.state.statusUpdate,
+            update: this.state.update
         });
         const user = JSON.parse(localStorage["user"]);
         const token = user.token;
@@ -43,12 +59,19 @@ class LoanDetailAdmin extends Component {
             }
         })
             .then(() => {
-                
+                axios({
+                    method: 'post',
+                    url: `${url}/loans/${this.props.match.params.loanId}/notify`,
+                    headers: { token: token },
+                    data: {
+                        update: this.state.update
+                    }
+                })
             })
             .then((res) => {
                 console.log(res.data)
                 alert(`Loan application status updated`)
-                //Add a redirect or reload here
+                window.location.reload(true);
             }).catch((error) => {
                 console.log(error)
             });
