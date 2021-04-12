@@ -11,14 +11,13 @@ const { Expo } = require('expo-server-sdk');
 const expo = new Expo();
 
 const notifyUser = ( update, somePushTokens ) => {
-  console.log("Console log: " + update);
   let messages = [];
   for (let pushToken of somePushTokens) {
     messages.push({
       to: pushToken,
       sound: 'default',
       title: 'RISE Reinvesting in Small Businesses',
-      body: `${update}`
+      body: update
     })
   }
 
@@ -94,7 +93,7 @@ router.post('/:id/notify', async (req, res) => {
 
     notifyUser(update, userTokens);
     res.send("Notifcation sent");
-    console.log(update);
+    console.log("Console log: " + update);
 });
 
 module.exports = router;
