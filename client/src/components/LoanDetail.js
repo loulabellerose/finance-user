@@ -69,9 +69,9 @@ class LoanDetail extends Component {
                 })
             })
             .then((res) => {
-                console.log(res.data)
+                //console.log(res.data)
                 alert(`Loan application status updated`)
-                window.location.reload(true);
+                //window.location.reload(true);
             }).catch((error) => {
                 console.log(error)
             });
