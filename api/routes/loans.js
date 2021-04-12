@@ -11,7 +11,7 @@ const { Expo } = require('expo-server-sdk');
 const expo = new Expo();
 
 const notifyUser = ( update, somePushTokens ) => {
-  console.log(update);
+  console.log("Console log: " + update);
   let messages = [];
   for (let pushToken of somePushTokens) {
     messages.push({
@@ -21,7 +21,7 @@ const notifyUser = ( update, somePushTokens ) => {
       body: `${update}`
     })
   }
-/*
+
 let chunks = expo.chunkPushNotifications(messages);
 let tickets = [];
 (async () => {
@@ -34,7 +34,7 @@ let tickets = [];
     }
   }
 })();
-*/
+
 };
 
 router.get('/', auth, async (req, res) => {
