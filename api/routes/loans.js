@@ -94,7 +94,7 @@ router.post('/:id/notify', async (req, res) => {
 
     notifyUser(update, userTokens);
     res.send("Notifcation sent");
-    console.log(userTokens);
+    console.log(update);
 });
 
 module.exports = router;
