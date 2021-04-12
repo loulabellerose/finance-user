@@ -71,7 +71,7 @@ class LoanDetailAdmin extends Component {
             .then((res) => {
                 //console.log(res.data)
                 alert(`Loan application status updated`)
-                location.reload(true);
+                window.location.reload(true);
             }).catch((error) => {
                 console.log(error)
             });
