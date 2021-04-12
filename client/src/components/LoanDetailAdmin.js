@@ -28,20 +28,20 @@ class LoanDetailAdmin extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        let update = 'Update to your loan application status';
+        let updateMessage = 'Update to your loan application status';
 
         //Below calls function to send push notification to merchant's device if status update matches condition
 
         if (this.state.statusUpdate == 'Documentation Requested') {
-            update = 'Update to loan application status: documentation has been requested';
+            updateMessage = 'Update to loan application status: documentation has been requested';
         }
 
         else if (this.state.statusUpdate == 'Approved') {
-            update = 'Update to loan application status: your loan application was approved!';
+            updateMessage = 'Update to loan application status: your loan application was approved!';
         }
 
         else if (this.state.statusUpdate == 'Rejected') {
-            update = 'Update to loan application status: your loan application was rejected';
+            updateMessage = 'Update to loan application status: your loan application was rejected';
         }
 
         this.setState({
@@ -64,7 +64,7 @@ class LoanDetailAdmin extends Component {
                     url: `${url}/loans/${this.props.match.params.loanId}/notify`,
                     headers: { token: token },
                     data: {
-                        update: this.state.update
+                        update: updateMessage
                     }
                 })
             })
