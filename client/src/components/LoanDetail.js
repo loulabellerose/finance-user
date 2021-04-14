@@ -115,6 +115,10 @@ class LoanDetail extends Component {
                 loan: this.state.business.loan
             };
             const arrayLength = loan.loan.status.length;
+            let element = "";
+            if ((loan.loan.status[arrayLength - 1].currentStatus) !== "Submitted by Merchant" && (loan.loan.status[arrayLength - 1].currentStatus) !== "Documentation Requested") {
+                element = <a href={`/dashboard/loans/${this.state.business._id}/docs`}>View Documentation</a>
+            }
             return (
                 <div className="wrapper">
                     <div className="form-row">
@@ -190,13 +194,11 @@ class LoanDetail extends Component {
 
                     <div className="form-row">
                         <div className="col">
-                            <label>Uploaded Documentation:</label>
-                            <a href={`/dashboard/loans/${this.state.business._id}/docs`}>View Documentation</a>
+                            <h5>{element}</h5>
                         </div>
-
                     </div>
                 </div>
-            )
+            );
         }
     }
 }
