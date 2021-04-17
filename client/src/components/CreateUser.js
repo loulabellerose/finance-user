@@ -34,12 +34,11 @@ export default class CreateUser extends Component {
     }
 
     onChangeUserRole(e) {
-        this.setState({ role: e.target.role })
+        this.setState({ role: e.target.value })
     }
 
     onSubmit(e) {
-        console.log("Submitting");
-        e.preventDefault()
+        e.preventDefault();
         const user = JSON.parse(localStorage["user"]);
         const token = user.token;
         axios({
@@ -55,13 +54,13 @@ export default class CreateUser extends Component {
         })
             .then((res) => {
                 console.log(res.data)
-                alert(`New user added    `)
-                //Add a redirect or reload here
+                alert('New user added');
+                this.props.history.push('/admin/users');
             }).catch((error) => {
                 console.log(error)
             });
 
-        this.setState({ name: '', email: '', password: '', role: '' })
+        this.setState({ name: '', email: '', password: '', role: '' });
     }
 
     render() {
@@ -78,14 +77,15 @@ export default class CreateUser extends Component {
                     </div>
                     <div className="form-group">
                         <label>Set Password</label>
-                        <input type="text" value={this.state.password} onChange={this.onChangeUserPassword} className="form-control" />
+                        <input type="password" value={this.state.password} onChange={this.onChangeUserPassword} className="form-control" />
                     </div>
                     
                     <div className="form-group">
                         <label>User role</label>
-                        <select value={this.state.role} onChange={this.onChangeUserRole} class="form-control btn btn-sm btn-outline-info dropdown-toggle">
-                            <option role="Analyst">Analyst</option>
-                            <option role="Admin">Admin</option>
+                        <select role={this.state.role} onChange={this.onChangeUserRole} className="form-control btn btn-sm btn-outline-info dropdown-toggle">
+                            <option role="">Select User Role</option>
+                            <option role="analyst">Analyst</option>
+                            <option role="admin">Admin</option>
                         </select>
                     </div>
         

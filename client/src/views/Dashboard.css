@@ -1,13 +1,13 @@
 body {
     font-size: .875rem;
+    font-family: 'Open Sans', sans-serif;
   }
 
 .main {
   padding-top: 200px;
 
 }
-
-  
+ 
   .feather {
     width: 16px;
     height: 16px;

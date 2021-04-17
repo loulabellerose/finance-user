@@ -1,0 +1,20 @@
+.thead-dark {
+    font-weight: bolder;
+}
+
+.status-badge {
+    margin-bottom: 0px;
+}
+
+.app-id {
+    font-size: small;
+}
+
+.business-name a{
+    font-weight: bolder;
+    color:#50969a;
+}
+
+tbody {
+    font-size: medium;
+}

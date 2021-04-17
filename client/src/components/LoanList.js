@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { config } from '../Constants';
-import moment from 'moment';
-import { clone } from 'lodash-es';
-
+import './LoanList.css';
 var url = config.url.API_URL;
 
 class LoanList extends Component {
@@ -54,11 +52,22 @@ class LoanList extends Component {
         return sorted.map((data, i) => {
             if (data.loan) {
                 const arrayLength = data.loan.status.length;
+                let statusBadge = "";
+                if ((data.loan.status[arrayLength - 1].currentStatus) === "Approved") {
+                    statusBadge = <p class="btn btn-outline-success disabled status-badge">{data.loan.status[arrayLength - 1].currentStatus}</p>
+                }
+                else if ((data.loan.status[arrayLength - 1].currentStatus) === "Rejected") {
+                    statusBadge = <p class="btn btn-outline-danger disabled status-badge">{data.loan.status[arrayLength - 1].currentStatus}</p>
+                }
+                else {
+                    statusBadge = <p class="btn btn-outline-secondary disabled status-badge">{data.loan.status[arrayLength - 1].currentStatus}</p>
+                }
                 return <tr>
-                    <td><a href={`/dashboard/loans/${data._id}`}>{data.businessName}</a></td>
+                    <td className="app-id">{data._id}</td>
+                    <td className="business-name"><a href={`/dashboard/loans/${data._id}`}>{data.businessName}</a></td>
                     <td>${data.loan.amount}</td>
-                    <td>{data.loan.status[arrayLength - 1].currentStatus}</td>
                     <td>{new Date(data.loan.status[arrayLength - 1].createdAt).toLocaleString('en-GB')}</td>
+                    <td>{statusBadge}</td>
                 </tr>;
             }
         });
@@ -70,7 +79,8 @@ class LoanList extends Component {
                 <table className="table table-striped">
                     <thead className="thead-dark">
                         <tr>
-                            <td>Merchant </td>
+                            <td>Application ID</td>
+                            <td>Business Name</td>
                             <td>Amount Requested</td>
                             <td>Application Status</td>
                             <td>Most Recent Update</td>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { config } from '../Constants';
+import './UserList.css';
 var url = config.url.API_URL;
 
 class UserList extends Component {
@@ -29,9 +30,9 @@ class UserList extends Component {
     getAllUsers() {
         return this.state.usersCollection.map((data, i) => {
             return <tr>
-                <td><a href={`/admin/users/${data._id}`}>{data.name}</a></td>
+                <td className="user-name"><a href={`/admin/users/${data._id}`}>{data.name}</a></td>
                 <td>{data.email}</td>
-                <td>{data.role}</td>
+                <td className="user-role">{data.role}</td>
             </tr>;
         });
     }

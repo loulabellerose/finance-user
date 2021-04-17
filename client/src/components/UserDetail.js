@@ -51,26 +51,27 @@ class UserDetail extends Component {
     render() {
         return (
             <div className="wrapper">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"></div>
                 <div className="form-row">
                     <div class="col">
-                        <label>Name</label>
+                        <label>Name:</label>
                         <h5>{this.state.user.name}</h5>
                     </div>
 
                     <div class="col">
-                        <label>Email</label>
+                        <label>Email:</label>
                         <h5>{this.state.user.email}</h5>
                     </div>
                 </div>
 
                 <div className="form-row">
                     <div class="col">
-                        <label>Role</label>
+                        <label>Role:</label>
                         <h5>{this.state.user.role}</h5>
                     </div>
 
                     <div class="col">
-                        <label>Account Status</label>
+                        <label>Account Status:</label>
                         <p>
                         <button type="button" class="btn btn-danger" onClick={this.handleClick}>
                             Delete User

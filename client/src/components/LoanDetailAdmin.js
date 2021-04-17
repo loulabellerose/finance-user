@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { config } from '../Constants';
+import './LoanDetail.css';
 var url = config.url.API_URL;
 
 class LoanDetailAdmin extends Component {
@@ -118,10 +119,45 @@ class LoanDetailAdmin extends Component {
             const arrayLength = loan.loan.status.length;
             let element = "";
             if ((loan.loan.status[arrayLength - 1].currentStatus) !== "Submitted by Merchant" && (loan.loan.status[arrayLength - 1].currentStatus) !== "Documentation Requested") {
-                element = <a href={`/dashboard/loans/${this.state.business._id}/docs`}>View Documentation</a>
+                element = (
+                    <div className="wrapper-documentation">
+                    <div className="row">
+                        <div className="col" align="center">
+                            <div className="loan-detail-header">
+                                <h5>Documentation In Support of RISE Application</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col">
+                        <div>
+                            <label>View Documentation:</label>
+                            <h5>
+                            <button type="button" class="btn-documentation btn btn-secondary">
+                            <a href={`/dashboard/loans/${this.state.business._id}/docs`}>Uploaded Image</a>
+                            </button>
+                            </h5>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                )
+            }
+            let statusBadge = "";
+            if ((loan.loan.status[arrayLength - 1].currentStatus) === "Approved") {
+                statusBadge = <h5 class="btn btn-outline-success disabled">{loan.loan.status[arrayLength - 1].currentStatus}</h5>
+            }
+            else if ((loan.loan.status[arrayLength - 1].currentStatus) === "Rejected") {
+                statusBadge = <h5 class="btn btn-outline-danger disabled">{loan.loan.status[arrayLength - 1].currentStatus}</h5>
+            }
+            else {
+                statusBadge = <h5 class="btn btn-outline-secondary disabled">{loan.loan.status[arrayLength - 1].currentStatus}</h5>
             }
             return (
                 <div className="wrapper">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"></div>
                     <div className="form-row">
                         <div className="col">
                             <label>Business Name: </label>
@@ -129,23 +165,31 @@ class LoanDetailAdmin extends Component {
                         </div>
 
                         <div className="col">
-                            <label>Loan application value:</label>
-                            <h5>£{loan.loan.amount} </h5>
+                            <label>Application #: </label>
+                            <p>{loan.loan._id}</p>
                         </div>
                     </div>
 
                     <div className="form-row">
                         <div className="col">
-                            <label>Current status:</label>
-                            <h5>{loan.loan.status[arrayLength - 1].currentStatus} </h5>
+                            <label>Loan application value:</label>
+                            <h5>£{loan.loan.amount} </h5>
                         </div>
 
+                        <div className="col">
+                            <label>Current status:</label>
+                            <p>
+                                {statusBadge}
+                            </p>
+                        </div>
+                    </div>
 
+                    <div className="form-row">
                         <div className="col">
                             <form onSubmit={this.handleSubmit}>
                                 <label>Update status:</label>
                                 <p>
-                                    <select value={this.state.statusUpdate} onChange={this.handleChange}>
+                                    <select value={this.state.statusUpdate} onChange={this.handleChange} class="form-select form-select-sm" aria-label=".form-select-sm example">
                                         <option statusUpdate="">SELECT: </option>
                                         <option statusUpdate="requested">Documentation Requested</option>
                                         <option statusUpdate="pending">Pending Approval</option>
@@ -158,6 +202,14 @@ class LoanDetailAdmin extends Component {
                         </div>
                     </div>
 
+                    <div className="row">
+                        <div className="col" align="center">
+                            <div className="loan-detail-header">
+                                <h5>Business Sales Data</h5>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="form-row">
                         <div className="col">
                             <label>Gross Monthly Sales:</label>
@@ -167,6 +219,14 @@ class LoanDetailAdmin extends Component {
                         <div className="col">
                             <label>Average Transaction Value:</label>
                             <h5> £{this.state.business.averageTransactionValue}</h5>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col" align="center">
+                            <div className="loan-detail-header">
+                                <h5>Merchant Account Details</h5>
+                            </div>
                         </div>
                     </div>
 
@@ -194,12 +254,14 @@ class LoanDetailAdmin extends Component {
                         </div>
                     </div>
 
-                    <div className="form-row">
-                        <div className="col">
-                            <h5>{element}</h5>
-                        </div>
 
-                    </div>
+                            {element}
+
+                            <div className="form-row">
+                             <div className="col">
+                            </div>
+                            </div>
+
 
                 </div>
             )

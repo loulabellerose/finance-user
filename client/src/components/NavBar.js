@@ -1,17 +1,34 @@
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Logout from './Logout';
+import './NavBarAdmin.css';
 
 export default function NavBar() {
-    return (
-      <div className="nav">
-        <ul class="nav flex-column col-2">
-          <li class="nav-item">
-            <Link className="nav-link" to={"/dashboard"}>Home</Link>
+
+  let user = JSON.parse(localStorage["user"]);
+  user = user.name;
+
+  return (
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+
+        <li class="nav-item  flex-md-nowrap p-160">
+          <img></img>
+          <p class="nav-link">Logged in as</p>
+          <p class="nav-link">{user}</p>
           </li>
+
           <li class="nav-item">
-            <a class="nav-link" onClick={Logout}>Logout</a>
+          <Link className="nav-link" to={"/dashboard"}> Home</Link>
           </li>
+
+          <li class="nav-item">
+          <a class="nav-link" onClick={Logout}>Logout</a>
+          </li>
+
         </ul>
-        </div>
-      )
-}
+      </div>
+    </nav>
+  )
+
+} 

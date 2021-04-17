@@ -1,0 +1,30 @@
+.wrapper {
+    width: 80%;
+}
+
+.loan-detail-header {
+    background-color:#50969a;
+    color: white;
+    padding: 5px 200px 0.5px 200px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.wrapper-documentation{
+    margin-bottom: 150px;
+}
+
+h5 a {
+    color: white;
+    justify-content: center;
+}
+
+.btn-documentation {
+    padding-left: 50px;
+    padding-right: 50px;
+
+}
+
+label {
+    font-weight: bolder;
+}
