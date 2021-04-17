@@ -29,7 +29,7 @@ class LoanList extends Component {
                 console.log(error);
             })
     }
-
+/*
     sortLoans() {
         const cloneLoans = [...this.state.loansCollection];
         for(let i = 0; i <= cloneLoans.length -1; i++)  {
@@ -46,10 +46,11 @@ class LoanList extends Component {
             cloneLoans
         )
     }
-
+*/
     getAllBusinessesWithLoans() {
-        const sorted = this.sortLoans();
-        return sorted.map((data, i) => {
+        //const sorted = this.sortLoans();
+        //return sorted.map((data, i) => {
+            return this.state.loansCollection.map((data, i) => {
             if (data.loan) {
                 const arrayLength = data.loan.status.length;
                 let statusBadge = "";
