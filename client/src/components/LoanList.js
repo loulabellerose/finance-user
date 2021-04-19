@@ -31,13 +31,11 @@ class LoanList extends Component {
     }
 
     sortLoans() {
-
         function hasApplied(business) {
             if (business.loan) return business;
         }
         const cloneLoans = [...this.state.loansCollection];
         const result = cloneLoans.filter(hasApplied);
-        console.log(result);
         for(let i = 0; i <= result.length -1; i++)  {
             for (let j = 0; j < result.length-1; j++) {
                 const loan1 = result[j];
@@ -56,7 +54,6 @@ class LoanList extends Component {
     getAllBusinessesWithLoans() {
         const sorted = this.sortLoans();
         return sorted.map((data, i) => {
-            //return this.state.loansCollection.map((data, i) => {
             if (data.loan) {
                 const arrayLength = data.loan.status.length;
                 let statusBadge = "";
@@ -90,8 +87,8 @@ class LoanList extends Component {
                             <td>Application ID</td>
                             <td>Business Name</td>
                             <td>Amount Requested</td>
-                            <td>Application Status</td>
                             <td>Most Recent Update</td>
+                            <td>Application Status</td>
                         </tr>
                     </thead>
                     <tbody>

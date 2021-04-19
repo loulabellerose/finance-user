@@ -86,8 +86,8 @@ class LoanList extends Component {
                         <td>Application ID</td>
                             <td>Business Name</td>
                             <td>Amount Requested</td>
-                            <td>Application Status</td>
                             <td>Most Recent Update</td>
+                            <td>Application Status</td>
                         </tr>
                     </thead>
                     <tbody>
