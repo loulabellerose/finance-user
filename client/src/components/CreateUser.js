@@ -69,15 +69,15 @@ export default class CreateUser extends Component {
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Enter Name</label>
-                        <input type="text" value={this.state.name} onChange={this.onChangeUserName} className="form-control" />
+                        <input type="text" value={this.state.name} onChange={this.onChangeUserName} className="form-control" required/>
                     </div>
                     <div className="form-group">
                         <label>Enter Email</label>
-                        <input type="text" value={this.state.email} onChange={this.onChangeUserEmail} className="form-control" />
+                        <input type="email" value={this.state.email} onChange={this.onChangeUserEmail} className="form-control" required/>
                     </div>
                     <div className="form-group">
                         <label>Set Password</label>
-                        <input type="password" value={this.state.password} onChange={this.onChangeUserPassword} className="form-control" />
+                        <input type="password" value={this.state.password} onChange={this.onChangeUserPassword} className="form-control" minLength="8" required/>
                     </div>
                     
                     <div className="form-group">

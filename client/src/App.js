@@ -30,7 +30,6 @@ function App() {
 
         <Route path="/login" component={Login} />
         <Route exact path="/error" component={Error} />
-        {/*<Route component={Page404} />*/}
 
         <Route path="/dashboard">
           <Dashboard>
@@ -55,12 +54,10 @@ function App() {
           </AdminDashboard>
         </Route>
 
-        </Switch>
-
-        </Router>
-
-
+      </Switch>
+    </Router>
   );
+  
 }
 
 export default App;

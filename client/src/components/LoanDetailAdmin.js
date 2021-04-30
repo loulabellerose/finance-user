@@ -135,7 +135,7 @@ class LoanDetailAdmin extends Component {
                             <label>View Documentation:</label>
                             <h5>
                             <button type="button" class="btn-documentation btn btn-secondary">
-                            <a href={`/dashboard/loans/${this.state.business._id}/docs`}>Uploaded Image</a>
+                            <a href={`/admin/loans/${this.state.business._id}/docs`}>Uploaded Image</a>
                             </button>
                             </h5>
                             

@@ -4,8 +4,7 @@ const {loanSchema} = require('./loan');
 
 const businessSchema = new db.Schema({
   merchantId: {
-    type: String,
-    //required: true
+    type: String
   },
  businessName: {
      type: String,
