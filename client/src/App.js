@@ -1,6 +1,6 @@
 import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import Login from './components/Login';
 
@@ -27,7 +27,6 @@ function App() {
   return (
     <Router>
       <Switch>
-
         <Route path="/login" component={Login} />
         <Route exact path="/error" component={Error} />
 
@@ -53,7 +52,7 @@ function App() {
             </Switch>
           </AdminDashboard>
         </Route>
-
+        <Route path="/" component={Login} />
       </Switch>
     </Router>
   );
