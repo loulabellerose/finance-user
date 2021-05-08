@@ -65,14 +65,14 @@ class LoanList extends Component {
                 }
                 else {
                     statusBadge = <p class="btn btn-outline-secondary disabled status-badge">{data.loan.status[arrayLength - 1].currentStatus}</p>
-                }
-                return <tr>
+                }             
+                return (<tr>
                     <td className="app-id">{data._id}</td>
                     <td className="business-name"><a href={`/dashboard/loans/${data._id}`}>{data.businessName}</a></td>
                     <td>${data.loan.amount}</td>
                     <td>{new Date(data.loan.status[arrayLength - 1].createdAt).toLocaleString('en-GB')}</td>
                     <td>{statusBadge}</td>
-                </tr>
+                </tr>)
             }
         })
     }

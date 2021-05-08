@@ -52,7 +52,7 @@ function App() {
             </Switch>
           </AdminDashboard>
         </Route>
-        <Route path="/" component={Login} />
+        
       </Switch>
     </Router>
   );
