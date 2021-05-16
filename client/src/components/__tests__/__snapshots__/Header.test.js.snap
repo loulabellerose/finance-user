@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component Should match the snapshot 1`] = `
+<header>
+  <div
+    class="row banner"
+  >
+    <div
+      class="col-8"
+    >
+      <h1>
+        R.I.S.E.
+      </h1>
+    </div>
+    <div
+      class="col-4"
+    >
+      <h3>
+        POP POS
+      </h3>
+    </div>
+  </div>
+</header>
+`;

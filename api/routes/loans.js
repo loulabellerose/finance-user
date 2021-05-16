@@ -43,6 +43,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 router.get('/:id', auth, async (req, res) => {
+  if (!db.Types.ObjectId.isValid(req.params.id)) return res.status(404).send('Invalid ID');
   const loan = await Loan.findById(req.params.id);
   if (!loan) return res.status(404).send('Loan application not found.');
   res.send(loan);

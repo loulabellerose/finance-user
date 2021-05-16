@@ -1,0 +1,5 @@
+
+{
+    "jwtPrivateKey": "rise_jwtPrivateKey",
+    "db": "mongodb://localhost/rise-app-test"
+  }

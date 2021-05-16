@@ -13,12 +13,14 @@ router.get('/', auth, async (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
+  if (!db.Types.ObjectId.isValid(req.params.id)) return res.status(404).send('Invalid ID');
   const business = await Business.findById(req.params.id);
   //check parameter for business id
   if (!business) return res.status(404).send('Business not found.');
   res.send(business);
 });
-
+//this end point is not used in the working application however was used to
+//populate the DB with appropriate validation
 router.post('/new', auth, async (req, res) => {
   const business = new Business(req.body, [
     'merchantId', 'businessName', 'grossMonthlySales', 'averageTransactionValue'
@@ -27,10 +29,9 @@ router.post('/new', auth, async (req, res) => {
 
   res.send(business);
 });
-
+/*
 router.put('/:id', auth, async (req, res) => {
   let business = Business.findOne(req.params.id);
-  console.log(business);
 
   let status = {
     status : req.body.status
@@ -39,5 +40,5 @@ router.put('/:id', auth, async (req, res) => {
   business.save(callback);
 
 });
-
+*/
 module.exports = router;

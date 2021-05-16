@@ -13,13 +13,9 @@ router.get('/', [auth, admin], async (req, res) => {
     res.json(eachOne);
   })
 });
-/*
-router.get('/me', auth, async (req, res) => {
-  const user = await User.findById(req.user._id).select('-password');
-  res.send(user);
-});
-*/
+
 router.get('/:id', [auth, admin], async (req, res) => {
+  if (!db.Types.ObjectId.isValid(req.params.id)) return res.status(404).send('Invalid ID');
   const user = await User.findById(req.params.id);
   if (!user) return res.status(404).send('User not found.');
   res.send(user);
@@ -51,6 +47,7 @@ router.put('/:id', [auth, admin], async (req, res) => {
 });
 
 router.delete('/:id', [auth, admin], async (req, res) => {
+  if (!db.Types.ObjectId.isValid(req.params.id)) return res.status(404).send('Invalid ID');
   const user = await User.findByIdAndRemove(req.params.id);
 
   if (!user) return res.status(404).send('User not found');
