@@ -29,7 +29,7 @@ router.post('/new', auth, async (req, res) => {
 });
 
 router.put('/:id', async (req, res) => {
-  if (!merchant) return res.status(404).send('Merchant account not found.');
+  
   const merchant = await Merchant.findByIdAndUpdate(req.params.id,
     {
       accountHolderName: req.accountHolderName,
@@ -39,6 +39,7 @@ router.put('/:id', async (req, res) => {
       postcode: req.postcode
     }
     );
+    if (!merchant) return res.status(404).send('Merchant account not found.');
   res.send(merchant);
 });
 
