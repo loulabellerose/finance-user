@@ -32,11 +32,11 @@ router.put('/:id', async (req, res) => {
   
   const merchant = await Merchant.findByIdAndUpdate(req.params.id,
     {
-      accountHolderName: req.accountHolderName,
-      email: req.email, 
-      phone: req.phone,
-      postalAddress: req.postalAddress, 
-      postcode: req.postcode
+      accountHolderName: req.body.accountHolderName,
+      email: req.body.email, 
+      phone: req.body.phone,
+      postalAddress: req.body.postalAddress, 
+      postcode: req.body.postcode
     }
     );
     if (!merchant) return res.status(404).send('Merchant account not found.');
