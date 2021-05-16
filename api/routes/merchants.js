@@ -37,7 +37,7 @@ router.put('/:id', async (req, res) => {
       phone: req.phone,
       postalAddress: req.postalAddress, 
       postcode: req.postcode
-    }, { new: true }
+    }
     );
   res.send(merchant);
 });
